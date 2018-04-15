@@ -101,12 +101,12 @@ uint_8 isEncoderFlagSet(uint_8 encoderNum){
 	switch(encoderNum){
 		case ENCODER_1:
 			return ((FTM0_C1SC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK);
-			break;
+//			break;
 		case ENCODER_2:
 			return ((FTM1_C1SC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK);
-			break;
+//			break;
 		default:
 			return 0;
-			break;
+//			break;
 	}
 }

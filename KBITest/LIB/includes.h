@@ -18,7 +18,7 @@
 #define SET_SPEED_CONTROL()		(peripheralRun|=(0x10))
 #define SET_DIRECTION_CONTROL()	(peripheralRun|=(0x20))
 #define SET_BALANCE_CONTROL()	(peripheralRun|=(0x40))
-#define SET_DISP_CHANGE()			(peripheralRun|=(0x80))
+#define SET_DISP_CHANGE()		(peripheralRun|=(0x80))
 
 #define CLR_ADCREAD_FLAG()		(peripheralRun&=~(0x01))
 #define CLR_GYROACCE_FLAG()		(peripheralRun&=~(0x02))
@@ -27,7 +27,7 @@
 #define CLR_SPEED_CONTROL()		(peripheralRun&=~(0x10))
 #define CLR_DIRECTION_CONTROL()	(peripheralRun&=~(0x20))
 #define CLR_BALANCE_CONTROL()	(peripheralRun&=~(0x40))
-#define CLR_DISP_CHANGE()			(peripheralRun&=~(0x80))
+#define CLR_DISP_CHANGE()		(peripheralRun&=~(0x80))
 
 #define ADCREAD_TIME			1u 			//read ADC every 200us
 #define GYRO_ACCE_TIME			2u 			//read gyro&acce every 400us
@@ -36,7 +36,7 @@
 #define SPEED_CONTRO_LTIME		25u			//run speed control every 5ms
 #define DIR_CONTROL_TIME		10u			//run direction control every 2ms
 #define BALANCE_CONTROL_TIME	10u			//run balance control every 2ms
-#define OLED_CHANGE_TIME	500u		//update oled display every 20ms
+#define OLED_CHANGE_TIME		500u		//update oled display every 20ms
 #define ELAPSE_TIME				1000u		//elapse time 20ms
 
 #endif//INCLUDES_H_

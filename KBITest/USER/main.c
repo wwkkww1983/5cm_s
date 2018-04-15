@@ -14,27 +14,27 @@ uint_8 peripheralRun;
 
 /*KBI DIFINITIONS*/
 /* KBI0 */
-#define	kbi_PTA(x)		(((uint_32)1<<(x))<<0)
-#define	kbi_PTB(x)		(((uint_32)1<<(x))<<8)
-#define	kbi_PTC(x)		(((uint_32)1<<(x))<<16)
-#define	kbi_PTD(x)		(((uint_32)1<<(x))<<24)
+#define	kbi_PTA(x)			(((uint_32)1<<(x))<<0)
+#define	kbi_PTB(x)			(((uint_32)1<<(x))<<8)
+#define	kbi_PTC(x)			(((uint_32)1<<(x))<<16)
+#define	kbi_PTD(x)			(((uint_32)1<<(x))<<24)
 /* KBI1 */
-#define	kbi_PTE(x)		(((uint_32)1<<(x))<<0)
-#define	kbi_PTF(x)		(((uint_32)1<<(x))<<8)
-#define	kbi_PTG(x)		(((uint_32)1<<(x))<<16)
-#define	kbi_PTH(x)		(((uint_32)1<<(x))<<24)
+#define	kbi_PTE(x)			(((uint_32)1<<(x))<<0)
+#define	kbi_PTF(x)			(((uint_32)1<<(x))<<8)
+#define	kbi_PTG(x)			(((uint_32)1<<(x))<<16)
+#define	kbi_PTH(x)			(((uint_32)1<<(x))<<24)
 /*KBI On-board presses */
-#define kbi_Press1		kbi_PTC(7)
-#define kbi_Press2		kbi_PTA(3)
-#define kbi_Press3		kbi_PTD(3)
-#define kbi_Press4		kbi_PTC(6)	
-#define kbi_Press5		kbi_PTA(2)
-#define kbi_Press6		kbi_PTD(4)
+#define kbi_Press1			kbi_PTC(7)
+#define kbi_Press2			kbi_PTA(3)
+#define kbi_Press3			kbi_PTD(3)
+#define kbi_Press4			kbi_PTC(6)	
+#define kbi_Press5			kbi_PTA(2)
+#define kbi_Press6			kbi_PTD(4)
 #define kbi0_Low(port)		KBI0_ES &= ~(port)
 #define kbi0_High(port)		KBI0_ES |= (port)
 
-#define KBIMASK 		(kbi_Press1|kbi_Press2|kbi_Press3|kbi_Press4|kbi_Press5|kbi_Press6)
-#define ANTISHAKETIME 	30
+#define KBIMASK 			(kbi_Press1|kbi_Press2|kbi_Press3|kbi_Press4|kbi_Press5|kbi_Press6)
+#define ANTISHAKETIME 		30
 
 /*RUNNING MODE DEFINITIONS: 'OLED MODE','BALANCE MODE','DRIVING MODE'*/
 #define IS_OLED_MODE 			(runningMode&(0x01))
@@ -67,7 +67,7 @@ int main(){
 		uint_8 index;
 
 		pitInit_us(pit_CH0, 500);
-		acceInit(MMA_12bit_Mode, 2);
+		acceInit(MMA_12bit_Mode, MMA_Sensi_2g);
 		GYROInit();
 		int_16 gyroMid;
     OLED_Init();
@@ -86,7 +86,7 @@ int main(){
 		
 		//gyroscope initialize
 		acceReadL(MMA_ADDR, 0x01, 6, val);
-		acceSolveData(0, val, getXYZ);
+		acceSolveData(MMA_12bit_Mode, val, getXYZ);
 		gyroAngle = atan2(-getXYZ[0],-getXYZ[2])*180/PI;
 	
 	  displayItem items[DATANUM];
@@ -151,7 +151,7 @@ int main(){
 				
 					CLR_GYROACCE_FLAG();
 					acceReadL(MMA_ADDR, 0x01, 6, val);
-					acceSolveData(0, val, getXYZ);
+					acceSolveData(MMA_12bit_Mode, val, getXYZ);
 				
 					gyroValue[count] = -GYROReadn(VO1,5)+gyroMid;			
 					xAxis[count] = getXYZ[0];

@@ -61,11 +61,10 @@ void  exit_critical(void)
 //参数说明：irq：irq号
 //功能概要：使能irq中断 
 //============================================================================
-void enable_irq (uint_16 irq)
+void enable_irq (IRQn_Type irq)
 {
     //确定irq号为有效的irq号
-    if (irq > 32)   irq=32;
-	
+    if ((uint16_t)irq > 32)   return;
     NVIC_ClearPendingIRQ(irq);
     NVIC_EnableIRQ(irq);
 }
@@ -76,11 +75,10 @@ void enable_irq (uint_16 irq)
 //参数说明：irq：irq号
 //功能概要：禁止irq中断 
 //============================================================================
-void disable_irq (uint_16 irq)
+void disable_irq (IRQn_Type irq)
 {
-
     //确定irq号为有效的irq号
-    if (irq > 32)   irq=32;
+    if ((uint16_t)irq > 32)   return;
     NVIC_SetPendingIRQ(irq);
     NVIC_DisableIRQ(irq);  
 }

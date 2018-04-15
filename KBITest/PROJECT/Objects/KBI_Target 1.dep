@@ -1,157 +1,186 @@
 Dependencies for Project 'KBI', Target 'Target 1': (DO NOT MODIFY !)
-F (..\CORE\startup_SKEAZ1284.s)(0x54AA0044)(--cpu Cortex-M0+ -g --apcs=interwork -I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "SKEAZ128xxx4 SETA 1"--list .\listings\startup_skeaz1284.lst --xref -o .\objects\startup_skeaz1284.o --depend .\objects\startup_skeaz1284.d)
-F (..\CORE\system_SKEAZ1284.c)(0x5A697BA3)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\system_skeaz1284.o --omf_browse .\objects\system_skeaz1284.crf --depend .\objects\system_skeaz1284.d)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\DRIVER\gpio.c)(0x5AC5F10F)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\gpio.o --omf_browse .\objects\gpio.crf --depend .\objects\gpio.d)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\DRIVER\KBI.c)(0x5AC5CE65)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\kbi.o --omf_browse .\objects\kbi.crf --depend .\objects\kbi.d)
-I (..\DRIVER\KBI.h)(0x5AA11B04)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\DRIVER\i2c.c)(0x5AC5EC02)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
-I (..\DRIVER\i2c.h)(0x5AC5EE69)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\delay.h)(0x5AC5D76E)
-F (..\DRIVER\pit.c)(0x5AC5EB3F)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\pit.o --omf_browse .\objects\pit.crf --depend .\objects\pit.d)
-I (..\DRIVER\pit.h)(0x5AC5EA3F)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\DRIVER\ADC.c)(0x5AC8293C)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
-I (..\DRIVER\ADC.h)(0x5A6E8CAE)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\LIB\common.c)(0x5A698D7F)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\common.o --omf_browse .\objects\common.crf --depend .\objects\common.d)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\LIB\OLED.c)(0x5AC84291)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\oled.o --omf_browse .\objects\oled.crf --depend .\objects\oled.d)
-I (..\LIB\OLED.h)(0x5AC5D7BC)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-I (..\LIB\delay.h)(0x5AC5D76E)
-F (..\LIB\display.c)(0x5AC84301)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\display.o --omf_browse .\objects\display.crf --depend .\objects\display.d)
-I (..\LIB\display.h)(0x5AC86EFA)
-I (..\LIB\OLED.h)(0x5AC5D7BC)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\LIB\delay.c)(0x5AC5E832)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
-I (..\LIB\delay.h)(0x5AC5D76E)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\LIB\accelerometer.c)(0x5AC85380)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\accelerometer.o --omf_browse .\objects\accelerometer.crf --depend .\objects\accelerometer.d)
-I (..\LIB\accelerometer.h)(0x5AC5EBF6)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-I (..\DRIVER\i2c.h)(0x5AC5EE69)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\delay.h)(0x5AC5D76E)
-F (..\LIB\GYRO.c)(0x5AC83D79)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\gyro.o --omf_browse .\objects\gyro.crf --depend .\objects\gyro.d)
-I (..\LIB\GYRO.h)(0x5AC83CFE)
-I (..\DRIVER\ADC.h)(0x5A6E8CAE)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-F (..\LIB\balanceControl.c)(0x5AC85592)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\balancecontrol.o --omf_browse .\objects\balancecontrol.crf --depend .\objects\balancecontrol.d)
-I (..\LIB\includes.h)(0x5AC82933)
-I (..\LIB\balanceControl.h)(0x5AC868E1)
-I (..\LIB\GYRO.h)(0x5AC83CFE)
-I (..\DRIVER\ADC.h)(0x5A6E8CAE)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-I (..\LIB\accelerometer.h)(0x5AC5EBF6)
-I (..\DRIVER\i2c.h)(0x5AC5EE69)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\delay.h)(0x5AC5D76E)
-I (F:\ARM\ARMCC\include\math.h)(0x588B8344)
-F (..\USER\main.c)(0x5AC86E51)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I.\RTE\_Target_1-IF:\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include-IF:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSKEAZ128xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (..\DRIVER\KBI.h)(0x5AA11B04)
-I (..\DRIVER\gpio.h)(0x5AC32BBD)
-I (..\LIB\common.h)(0x5AC5EA61)
-I (..\CORE\SKEAZ1284.h)(0x5A218530)
-I (F:\ARM\ARMCC\include\stdint.h)(0x5AC5E859)
-I (..\CORE\core_cm0plus.h)(0x5571CD64)
-I (..\CORE\core_cmInstr.h)(0x5571CD64)
-I (..\CORE\core_cmFunc.h)(0x5571CD64)
-I (..\CORE\system_SKEAZ1284.h)(0x5571BC04)
-I (..\LIB\balanceControl.h)(0x5AC868E1)
-I (..\LIB\GYRO.h)(0x5AC83CFE)
-I (..\DRIVER\ADC.h)(0x5A6E8CAE)
-I (..\LIB\accelerometer.h)(0x5AC5EBF6)
-I (..\DRIVER\i2c.h)(0x5AC5EE69)
-I (..\LIB\delay.h)(0x5AC5D76E)
-I (F:\ARM\ARMCC\include\math.h)(0x588B8344)
-I (..\LIB\OLED.h)(0x5AC5D7BC)
-I (..\DRIVER\pit.h)(0x5AC5EA3F)
-I (..\LIB\display.h)(0x5AC86EFA)
-I (F:\ARM\ARMCC\include\string.h)(0x588B8344)
-I (..\LIB\includes.h)(0x5AC82933)
+F (..\CORE\startup_SKEAZ1284.s)(0x5AD1EA16)(--cpu Cortex-M0+ -g --apcs=interwork -I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"--pd "__UVISION_VERSION SETA 520" --pd "SKEAZ128xxx4 SETA 1"--list .\listings\startup_skeaz1284.lst --xref -o .\objects\startup_skeaz1284.o --depend .\objects\startup_skeaz1284.d)
+F (..\CORE\system_SKEAZ1284.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\system_skeaz1284.o --omf_browse .\objects\system_skeaz1284.crf --depend .\objects\system_skeaz1284.d)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\DRIVER\gpio.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\gpio.o --omf_browse .\objects\gpio.crf --depend .\objects\gpio.d)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\DRIVER\KBI.c)(0x5AD1EF5D)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\kbi.o --omf_browse .\objects\kbi.crf --depend .\objects\kbi.d)
+I (..\DRIVER\KBI.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\DRIVER\i2c.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\i2c.o --omf_browse .\objects\i2c.crf --depend .\objects\i2c.d)
+I (..\DRIVER\i2c.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\delay.h)(0x5AD1EA16)
+F (..\DRIVER\pit.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\pit.o --omf_browse .\objects\pit.crf --depend .\objects\pit.d)
+I (..\DRIVER\pit.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\DRIVER\ADC.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\adc.o --omf_browse .\objects\adc.crf --depend .\objects\adc.d)
+I (..\DRIVER\ADC.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\DRIVER\pwm.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
+I (..\DRIVER\pwm.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\common.c)(0x5AD1F060)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\common.o --omf_browse .\objects\common.crf --depend .\objects\common.d)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\OLED.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\oled.o --omf_browse .\objects\oled.crf --depend .\objects\oled.d)
+I (..\LIB\OLED.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\LIB\delay.h)(0x5AD1EA16)
+F (..\LIB\display.c)(0x5AD1F178)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\display.o --omf_browse .\objects\display.crf --depend .\objects\display.d)
+I (..\LIB\display.h)(0x5AD1EA16)
+I (..\LIB\OLED.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\delay.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\delay.o --omf_browse .\objects\delay.crf --depend .\objects\delay.d)
+I (..\LIB\delay.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\accelerometer.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\accelerometer.o --omf_browse .\objects\accelerometer.crf --depend .\objects\accelerometer.d)
+I (..\LIB\accelerometer.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\DRIVER\i2c.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\delay.h)(0x5AD1EA16)
+F (..\LIB\GYRO.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\gyro.o --omf_browse .\objects\gyro.crf --depend .\objects\gyro.d)
+I (..\LIB\GYRO.h)(0x5AD1EA16)
+I (..\DRIVER\ADC.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\PID.c)(0x5AD1F35E)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\pid.o --omf_browse .\objects\pid.crf --depend .\objects\pid.d)
+I (..\LIB\PID.h)(0x5AD1F358)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+F (..\LIB\balanceControl.c)(0x5AD1EA16)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\balancecontrol.o --omf_browse .\objects\balancecontrol.crf --depend .\objects\balancecontrol.d)
+I (..\LIB\includes.h)(0x5AD1EE7E)
+I (..\LIB\balanceControl.h)(0x5AD1EA16)
+I (..\LIB\GYRO.h)(0x5AD1EA16)
+I (..\DRIVER\ADC.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\LIB\accelerometer.h)(0x5AD1EA16)
+I (..\DRIVER\i2c.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\delay.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\math.h)(0x588B8344)
+F (..\USER\main.c)(0x5AD1EFC1)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+I (..\DRIVER\KBI.h)(0x5AD1EA16)
+I (..\DRIVER\gpio.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\LIB\balanceControl.h)(0x5AD1EA16)
+I (..\LIB\GYRO.h)(0x5AD1EA16)
+I (..\DRIVER\ADC.h)(0x5AD1EA16)
+I (..\LIB\accelerometer.h)(0x5AD1EA16)
+I (..\DRIVER\i2c.h)(0x5AD1EA16)
+I (..\LIB\delay.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\math.h)(0x588B8344)
+I (..\LIB\OLED.h)(0x5AD1EA16)
+I (..\DRIVER\pit.h)(0x5AD1EA16)
+I (..\LIB\display.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\string.h)(0x588B8344)
+I (..\LIB\includes.h)(0x5AD1EE7E)
+F (..\LIB\pid_motor.c)(0x5AD1F56D)(--c99 -c --cpu Cortex-M0+ -g -O0 --apcs=interwork --split_sections -I ..\CORE -I ..\DRIVER -I ..\LIB-I E:\Work\TU-Smart\KEA\PRJ\5cm_s\KBITest\PROJECT\RTE-I "D:\Program Files\Keil_v5\ARM\PACK\Keil\Kinetis_KEAxx_DFP\1.3.0\Device\Include"-I "D:\Program Files\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="520" -DSKEAZ128xxx4-o .\objects\pid_motor.o --omf_browse .\objects\pid_motor.crf --depend .\objects\pid_motor.d)
+I (..\LIB\pid_motor.h)(0x5AD1F49E)
+I (..\DRIVER\pwm.h)(0x5AD1EA16)
+I (..\LIB\common.h)(0x5AD1F017)
+I (..\CORE\SKEAZ1284.h)(0x5AD1EA16)
+I (D:\Program Files\Keil_v5\ARM\ARMCC\include\stdint.h)(0x59EF3E0C)
+I (..\CORE\core_cm0plus.h)(0x5AD1EA16)
+I (..\CORE\core_cmInstr.h)(0x5AD1EA16)
+I (..\CORE\core_cmFunc.h)(0x5AD1EA16)
+I (..\CORE\system_SKEAZ1284.h)(0x5AD1EA16)
+I (..\LIB\PID.h)(0x5AD1F358)

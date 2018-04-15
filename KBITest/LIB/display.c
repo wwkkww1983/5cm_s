@@ -72,7 +72,7 @@ void pageDown(void){
 	if(page==0) page = (DATANUM-1)/MAXLINE;
 	else page--;
 	line = 0;
-	SET_CHANGE_FLAG()	;
+	SET_CHANGE_FLAG();
 }
 
 //===========================================================================

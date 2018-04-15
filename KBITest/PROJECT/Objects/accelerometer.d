@@ -2,7 +2,7 @@
 .\objects\accelerometer.o: ..\LIB\accelerometer.h
 .\objects\accelerometer.o: ..\LIB\common.h
 .\objects\accelerometer.o: ..\CORE\SKEAZ1284.h
-.\objects\accelerometer.o: F:\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\accelerometer.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\accelerometer.o: ..\CORE\core_cm0plus.h
 .\objects\accelerometer.o: ..\CORE\core_cmInstr.h
 .\objects\accelerometer.o: ..\CORE\SKEAZ1284.h

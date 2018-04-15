@@ -2,7 +2,7 @@
 #include "common.h"
 #include "gpio.h"
 
-extern uint_16 frequency;
+extern uint_16 frequency[2];
 
 void FTM1_IRQHandler(){
 	  static int_16 results[10]={0};
@@ -21,7 +21,7 @@ void FTM1_IRQHandler(){
 							avg+=results[i+5]-results[i];
 						}
 						avg=avg/25;
-						frequency=avg;
+						frequency[0]=avg;
 				}
 		EncoderClrFlag(ENCODER_2);
 		}
@@ -43,7 +43,7 @@ void FTM0_IRQHandler(){
 							avg+=results[i+5]-results[i];
 						}
 						avg=avg/25;
-						frequency=avg;
+						frequency[1]=avg;
 				}
 		EncoderClrFlag(ENCODER_1);
 		}

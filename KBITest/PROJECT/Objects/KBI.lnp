@@ -6,15 +6,18 @@
 ".\objects\i2c.o"
 ".\objects\pit.o"
 ".\objects\adc.o"
+".\objects\pwm.o"
 ".\objects\common.o"
 ".\objects\oled.o"
 ".\objects\display.o"
 ".\objects\delay.o"
 ".\objects\accelerometer.o"
 ".\objects\gyro.o"
+".\objects\pid.o"
 ".\objects\balancecontrol.o"
 ".\objects\main.o"
+".\objects\pid_motor.o"
 --strict --scatter ".\Objects\KBI.sct"
---summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list ".\Listings\KBI.map" -o .\Objects\KBI.axf

@@ -7,6 +7,25 @@
 //作者：Shine Wong
 //===========================================================================
 #include "PID.h"
+
+//===========================================================================
+//Function: Initialize PID structure parameters.
+//Return: null
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
+//Others: null
+//===========================================================================
+void PIDInit(pPID pidController, int_16 Kp, int_16 Ki, int_16 Kd)
+{
+	pidController->prevError = Kp;
+	pidController->integral = Ki;
+	pidController->derivative = Kd;
+	pidController->target = 0;
+	pidController->lastError = 0;
+	pidController->prevError = 0;
+	pidController->sumError = 0;
+	pidController->lastOutput = 0;
+}
 //===========================================================================
 //Function: To compute the control quantity according to a certain PID Controller
 //			and an error value
@@ -27,3 +46,5 @@ int PIDController(pPID pidController, int_16 thisError){
 	
 	return pidController->lastOutput;
 }
+
+

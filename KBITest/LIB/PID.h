@@ -11,7 +11,7 @@
 
 #include "common.h"
 
-typedef struct PID{
+typedef struct PID {
 	int_16  target;			// 设定目标 Desired value
 	int_16  proportion; 	// 比例常数 Proportional Const
 	int_16  integral;		// 积分常数 Integral Const
@@ -22,6 +22,14 @@ typedef struct PID{
 	int_16  lastOutput;		// Control quantity last time
 }PID,*pPID;
 
+//===========================================================================
+//Function: Initialize PID structure parameters.
+//Return: null
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
+//Others: null
+//===========================================================================
+void PIDInit(pPID pidController, int_16 Kp, int_16 Ki, int_16 Kd);
 //===========================================================================
 //Function: To compute the control quantity according to a certain PID Controller
 //			and an error value

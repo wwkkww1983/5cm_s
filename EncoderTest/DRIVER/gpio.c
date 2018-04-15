@@ -225,6 +225,71 @@ void gpio_pull(uint_16 port_pin, uint_8 pullselect)
 	}
 }
 
+void gpio_setIn(uint_16 port_pin){
+	//局部变量声明
+	GPIO_MemMapPtr gpio_ptr;    //声明port_ptr为GPIO结构体类型指针
+	uint_8 port;                //端口号
+	uint_8 pin;                 //引脚号
+	gpio_port_pin_num(port_pin, &port, &pin);   //解析出端口号及引脚号
+	//计算引脚在寄存器中的偏移量
+	if (port < 4)               //端口号为PORTA~PORTD
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOA_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * port + pin;
+	} 
+	else if(3<port &&port< 8)   //端口号为PORTE~PORTH
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOB_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * (port - 4) + pin;
+	}
+	else                       //端口号为PORTI
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOC_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * (port - 8) + pin;
+	}
+	BCLR(bit, GPIO_PDDR_REG(gpio_ptr));
+	BCLR(bit, GPIO_PIDR_REG(gpio_ptr));
+}
+
+void gpio_setOut(uint_16 port_pin){
+	//局部变量声明
+	GPIO_MemMapPtr gpio_ptr;    //声明port_ptr为GPIO结构体类型指针
+	uint_8 port;                //端口号
+	uint_8 pin;                 //引脚号
+	gpio_port_pin_num(port_pin, &port, &pin);   //解析出端口号及引脚号
+	//计算引脚在寄存器中的偏移量
+	if (port < 4)               //端口号为PORTA~PORTD
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOA_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * port + pin;
+	} 
+	else if(3<port &&port< 8)   //端口号为PORTE~PORTH
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOB_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * (port - 4) + pin;
+	}
+	else                       //端口号为PORTI
+	{
+		//端口所在的寄存器基地址
+		gpio_ptr = GPIOC_BASE_PTR;
+		//引脚所在的位数
+		bit = 8 * (port - 8) + pin;
+	}
+	BSET(bit, GPIO_PDDR_REG(gpio_ptr));
+	BSET(bit, GPIO_PIDR_REG(gpio_ptr));
+}
+
+
 //----------------------以下为内部函数存放处----------------------------------------
 //===========================================================================
 //函数名称：gpio_port_pin_num

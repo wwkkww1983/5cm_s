@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\KBI.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\KBI.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Apr 07 15:10:54 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Apr 14 20:34:56 2018
 <BR><P>
 <H3>Maximum Stack Usage =        400 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -405,10 +405,10 @@ Global Symbols
 <P><STRONG><a name="[58]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, daddsub.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan2
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
 <P><STRONG><a name="[3e]"></a>_dadd</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, daddsub.o(.text), UNUSED)
@@ -486,10 +486,10 @@ Global Symbols
 <P><STRONG><a name="[57]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 56 bytes, dmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
-<LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
+<BR>[Called By]<UL><LI><a href="#[79]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
 <P><STRONG><a name="[d6]"></a>_dmul</STRONG> (Thumb, 558 bytes, Stack size 56 bytes, dmul.o(.text), UNUSED)
@@ -530,8 +530,8 @@ Global Symbols
 <P><STRONG><a name="[4a]"></a>__aeabi_i2f</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, fflti.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f_normalise
 </UL>
-<BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
 <P><STRONG><a name="[d9]"></a>_fflt</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflti.o(.text), UNUSED)
@@ -1094,8 +1094,7 @@ Global Symbols
 <P><STRONG><a name="[38]"></a>main</STRONG> (Thumb, 900 bytes, Stack size 208 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 400<LI>Call Chain = main &rArr; OLEDDisplay &rArr; dis_num &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; gpio_set
 </UL>
-<BR>[Calls]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
-<LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getGyroMid
+<BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getGyroMid
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GYROReadn
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GYROInit
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acceSolveData
@@ -1115,6 +1114,7 @@ Global Symbols
 <LI><a href="#[8b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
+<LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 <BR>[Called By]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
