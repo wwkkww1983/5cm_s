@@ -41,4 +41,11 @@ void setForwDuty(int motorNum,float duty);
 //==========================================================================
 void setReveDuty(int motorNum,float duty);
 
+//==========================================================================
+//Function: To calc speed in rpm to duty%
+//Return: duty for pwm
+//Arguements: Speed in rpm(round per minute) unit
+//==========================================================================
+float calcDuty(float speed_rpm);
+
 #endif

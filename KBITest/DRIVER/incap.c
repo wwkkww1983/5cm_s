@@ -102,7 +102,7 @@ void INCaptureInit(uint_8 ftmNo,uint_8 channel)
 void FTMEnInterrupt(uint_8 FTMChannel)
 {
     //开FTM中断
-    NVIC_EnableIRQ(FTM0_irq_no + FTMChannel);
+    NVIC_EnableIRQ((IRQn_Type)(FTM0_irq_no + FTMChannel));
 }
 
 //====================================================================
@@ -114,5 +114,5 @@ void FTMEnInterrupt(uint_8 FTMChannel)
 void FTMdisInterrupt(uint_8 FTMChannel)
 {
     //关FTM中断
-    NVIC_DisableIRQ(FTM0_irq_no + FTMChannel);
+    NVIC_DisableIRQ((IRQn_Type)(FTM0_irq_no + FTMChannel));
 }

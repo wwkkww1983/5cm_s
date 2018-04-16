@@ -7,6 +7,7 @@
 ".\objects\pit.o"
 ".\objects\adc.o"
 ".\objects\pwm.o"
+".\objects\incap.o"
 ".\objects\common.o"
 ".\objects\oled.o"
 ".\objects\display.o"
@@ -15,8 +16,10 @@
 ".\objects\gyro.o"
 ".\objects\pid.o"
 ".\objects\balancecontrol.o"
+".\objects\encoder.o"
+".\objects\motor.o"
 ".\objects\main.o"
-".\objects\pid_motor.o"
+".\objects\isr.o"
 --strict --scatter ".\Objects\KBI.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

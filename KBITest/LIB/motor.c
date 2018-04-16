@@ -75,9 +75,19 @@ void setReveDuty(int motorNum,float duty){
 			FTM_PWM_set_duty(FTM_2,CHANNEL2,0);
 			FTM_PWM_set_duty(FTM_2,CHANNEL3,duty);
 			break;
-
 		//still remain to fill the content
 		default:
 			break;
 		}
+}
+
+
+//==========================================================================
+//Function: To calc speed in rpm to duty%
+//Return: duty for pwm
+//Arguements: Speed in rpm(round per minute) unit
+//==========================================================================
+float calcDuty(float speed_rpm){
+//	speed_rpm
+	return 0.0;
 }
