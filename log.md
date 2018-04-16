@@ -7,7 +7,8 @@
 + 队长交代下一阶段工作安排
 + 我自己梳理了一下程序
 
-
-    
+## 2018-04-15 
+>Recorder: YTom
++ None
 
 _copyright: 同济大学Tu_smart智能车队版权所有_
