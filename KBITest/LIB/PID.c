@@ -15,9 +15,9 @@
 //			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
 //Others: null
 //===========================================================================
-void PIDInit(pPID pidController, int_16 Kp, int_16 Ki, int_16 Kd)
+void PIDInit(pPID pidController, float Kp, float Ki, float Kd)
 {
-	pidController->prevError = Kp;
+	pidController->proportion = Kp;
 	pidController->integral = Ki;
 	pidController->derivative = Kd;
 	pidController->target = 0;
@@ -34,17 +34,35 @@ void PIDInit(pPID pidController, int_16 Kp, int_16 Ki, int_16 Kd)
 //			  thisError:   	 the most lately computed error
 //Others: null
 //===========================================================================
-int PIDController(pPID pidController, int_16 thisError){
-	int_16 pError, dError, iError, output;
-	pError = thisError - pidController->lastError;
-	iError = thisError;
-	dError = thisError - 2*(pidController->lastError) + pidController->prevError;
-	output = pidController->proportion*pError + pidController->integral*iError + pidController->derivative*dError;
-	pidController->prevError   = pidController->lastError;
-	pidController->lastError  = thisError;
-	pidController->lastOutput = output + pidController->lastOutput;
-	
+//int PIDController(pPID pidController, float thisError){
+//	float pError, dError, iError, output;
+//	pError = thisError - pidController->lastError;
+//	iError = thisError;
+//	dError = thisError - 2*(pidController->lastError) + pidController->prevError;
+//	output = pidController->proportion*pError + pidController->integral*iError + pidController->derivative*dError;
+//	pidController->prevError   = pidController->lastError;
+//	pidController->lastError  = thisError;
+//	pidController->lastOutput = output + pidController->lastOutput;
+////	return pidController->lastOutput;
+//	return output;
+//}
+
+
+//	pidController->proportion = Kp;
+//	pidController->integral = Ki;
+//	pidController->derivative = Kd;
+//	pidController->target = 0;
+//	pidController->lastError = 0;
+//	pidController->prevError = 0;
+//	pidController->sumError = 0;
+//	pidController->lastOutput = 0;
+float PIDcalc(pPID pidController, float gloal, float thisVal){
+	float error,output;
+	error = gloal - thisVal;
+	pidController->sumError += error;
+	output = pidController->proportion*error + pidController->integral*pidController->sumError + pidController->derivative*(pidController->lastError-error);
+	pidController->lastError  = error;
+	pidController->lastOutput = thisVal + output;
 	return pidController->lastOutput;
 }
-
 

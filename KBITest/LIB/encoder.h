@@ -19,9 +19,9 @@
 #define encoder1IRQ FTM0_IRQHandler
 #define encoder2IRQ FTM1_IRQHandler
 
-// Pulses number for each circle of the encoders
-#define encoder1CirclePulse		256
-#define encoder2CirclePulse		256
+// Encoder pulses in a circle
+#define encoder1CirclePulse		512
+#define encoder2CirclePulse		512
 
 //==========================================================================
 //Function: To initialize a encoder with two PWM ports

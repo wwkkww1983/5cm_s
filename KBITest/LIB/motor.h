@@ -15,6 +15,8 @@
 #define MOTOR_1 1
 #define MOTOR_2 2
 
+#define MOTOR_SPEEDLIMIT		60
+
 //==========================================================================
 //Function: To initialize a motor with two PWM ports
 //Return: Null
@@ -41,11 +43,7 @@ void setForwDuty(int motorNum,float duty);
 //==========================================================================
 void setReveDuty(int motorNum,float duty);
 
-//==========================================================================
-//Function: To calc speed in rpm to duty%
-//Return: duty for pwm
-//Arguements: Speed in rpm(round per minute) unit
-//==========================================================================
-float calcDuty(float speed_rpm);
+float calcDuty(float speedrpm);
+float speedLeagalize(float duty);
 
 #endif

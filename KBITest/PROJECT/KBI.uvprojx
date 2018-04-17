@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\DRIVER;..\LIB</IncludePath>
+              <IncludePath>..\CORE;..\DRIVER;..\LIB;..\USER;..\USER\test</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -424,6 +424,11 @@
               <FileType>1</FileType>
               <FilePath>..\DRIVER\pwm.c</FilePath>
             </File>
+            <File>
+              <FileName>incap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\incap.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -469,25 +474,33 @@
               <FileType>1</FileType>
               <FilePath>..\LIB\balanceControl.c</FilePath>
             </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\motor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>user</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\main.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>test</GroupName>
           <Files>
             <File>
-              <FileName>pid_motor.c</FileName>
+              <FileName>main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\LIB\pid_motor.c</FilePath>
+              <FilePath>..\USER\test\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>isr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\test\isr.c</FilePath>
             </File>
           </Files>
         </Group>

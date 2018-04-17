@@ -16,7 +16,6 @@ void motor_Update()
 {
 	PIDSpeed->target = motor_DutyGoal;
 	
-	
 	FTM_PWM_set_duty(motor_FTM,motor_CHNNALE);
 	PIDController(PIDSpeed,
 }

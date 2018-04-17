@@ -42,12 +42,12 @@ void initMotor(int motorNum,float frequency){
 void setForwDuty(int motorNum,float duty){
 	switch(motorNum){
 		case MOTOR_1:
-			FTM_PWM_set_duty(FTM_2,CHANNEL0,duty);
+			FTM_PWM_set_duty(FTM_2,CHANNEL0,speedLeagalize(duty));
 			FTM_PWM_set_duty(FTM_2,CHANNEL1,0);
 			break;
 
 		case MOTOR_2:
-			FTM_PWM_set_duty(FTM_2,CHANNEL2,duty);
+			FTM_PWM_set_duty(FTM_2,CHANNEL2,speedLeagalize(duty));
 			FTM_PWM_set_duty(FTM_2,CHANNEL3,0);
 			break;
 
@@ -68,13 +68,14 @@ void setReveDuty(int motorNum,float duty){
 	switch(motorNum){
 		case MOTOR_1:
 			FTM_PWM_set_duty(FTM_2,CHANNEL0,0);
-			FTM_PWM_set_duty(FTM_2,CHANNEL1,duty);
+			FTM_PWM_set_duty(FTM_2,CHANNEL1,speedLeagalize(duty));
 			break;
 
 		case MOTOR_2:
 			FTM_PWM_set_duty(FTM_2,CHANNEL2,0);
-			FTM_PWM_set_duty(FTM_2,CHANNEL3,duty);
+			FTM_PWM_set_duty(FTM_2,CHANNEL3,speedLeagalize(duty));
 			break;
+
 		//still remain to fill the content
 		default:
 			break;
@@ -82,12 +83,12 @@ void setReveDuty(int motorNum,float duty){
 }
 
 
-//==========================================================================
-//Function: To calc speed in rpm to duty%
-//Return: duty for pwm
-//Arguements: Speed in rpm(round per minute) unit
-//==========================================================================
-float calcDuty(float speed_rpm){
-//	speed_rpm
-	return 0.0;
+float calcDuty(float speedrpm)
+{
+	return 0.03*speedrpm+20.0;
+}
+
+float speedLeagalize(float duty)
+{
+	return (duty<0)?0:((duty>MOTOR_SPEEDLIMIT)?MOTOR_SPEEDLIMIT:duty);
 }

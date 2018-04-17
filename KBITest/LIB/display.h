@@ -24,7 +24,7 @@
 
 #define MIN(X,Y) (X>Y?Y:X)
 
-#define DATANUM 3		//the number of datas to be displayed
+#define DATANUM 4		//the number of datas to be displayed
 #define MAXLINE 4		//the maximum number of lines that can be displayed on a single page
 #define SENSOR_PAGE 3	//refer to pages displaying datas read from sensors and are always changing
 
