@@ -23,6 +23,10 @@
 #define encoder1CirclePulse		512
 #define encoder2CirclePulse		512
 
+// D(irection) phase value port, high for ClockWise and low the reverse
+#define directionPort1			PORTA|(0)
+#define directionPort2			PORTH|(2)
+
 //==========================================================================
 //Function: To initialize a encoder with two PWM ports
 //Return: Null

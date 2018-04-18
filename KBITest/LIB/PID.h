@@ -38,8 +38,16 @@ void PIDInit(pPID pidController, float Kp, float Ki, float Kd);
 //			  thisError:   	 the most lately computed error
 //Others: null
 //===========================================================================
-int PIDController(pPID pidController, float thisError);
-
+//int PIDController(pPID pidController, float thisError);
+//===========================================================================
+//Function: To compute the control quantity according to a certain PID Controller
+//			and an error value
+//Return: returns control quantity
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  gloal:   	 target value
+//			  thisVal:   current value
+//Others: null
+//===========================================================================
 float PIDcalc(pPID pidController, float gloal, float thisVal);
 
 #endif

@@ -59,12 +59,6 @@ int main(){
 	// Motors initialization
 	initMotor(MOTOR_1,10);	// 10kHz
 	initMotor(MOTOR_2,10);
-	
-//	gpio_init(PORTA|(3),GPIO_OUTPUT,0);
-//	setForwDuty(MOTOR_2,40);
-//	setReveDuty(MOTOR_1,40);
-//	//
-//	gpio_set(PORTA|(3),1);
 
 	setGoalRPM = 400.0;
 	

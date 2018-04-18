@@ -47,15 +47,15 @@ void PIDInit(pPID pidController, float Kp, float Ki, float Kd)
 //	return output;
 //}
 
-
-//	pidController->proportion = Kp;
-//	pidController->integral = Ki;
-//	pidController->derivative = Kd;
-//	pidController->target = 0;
-//	pidController->lastError = 0;
-//	pidController->prevError = 0;
-//	pidController->sumError = 0;
-//	pidController->lastOutput = 0;
+//===========================================================================
+//Function: To compute the control quantity according to a certain PID Controller
+//			and an error value
+//Return: returns control quantity
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  gloal:   	 target value
+//			  thisVal:   current value
+//Others: null
+//===========================================================================
 float PIDcalc(pPID pidController, float gloal, float thisVal){
 	float error,output;
 	error = gloal - thisVal;
