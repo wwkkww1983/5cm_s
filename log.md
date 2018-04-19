@@ -27,3 +27,7 @@
 ## 2018-04-18
 >Recorder: lsy
 + 今日无进度更新
+
+## 2018-04-19
+>Recorder: WilliamMy
++ 读取ADC部分文件添加
