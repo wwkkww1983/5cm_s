@@ -349,13 +349,18 @@ void OLED_ShowNum(u8 x,u8 y,u32 num,u8 len,u8 size2)
 //显示一个字符号串
 void OLED_ShowString(u8 x,u8 y,int_8 *chr)
 {
-  unsigned char j=0;
-  while (chr[j]!='\0')
-  {   OLED_ShowChar(x,y,chr[j]);
-      x+=8;
-    if(x>120){x=0;y+=2;}
-      j++;
-  }
+unsigned char j=0;
+	while (chr[j]!='\0')
+	{   
+		OLED_ShowChar(x,y,chr[j]);
+		x+=8;
+#if(SIZE==16)
+		if(x>120){x=0;y+=2;}
+#else
+		if(x>120){x=0;y+=1;}
+#endif
+		j++;
+	}
 }
 //显示汉字
 /*void OLED_ShowCHinese(u8 x,u8 y,u8 no)

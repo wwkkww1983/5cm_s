@@ -53,7 +53,6 @@
 #define CLR_BALANCE_CONTROL()	(peripheralRun&=~(0x40))
 #define CLR_DISP_REFRESH()		(peripheralRun&=~(0x80))
 
-9
 #define GLOBAL_TIME_UNIT		500
 #define ADCREAD_TIME			2u 			//read ADC every 				1ms		1000Hz
 #define GYRO_ACCE_TIME			2u 			//read gyro&acce every 			1ms		1000Hz
@@ -73,20 +72,17 @@
 #define IS_OLED_MODE 			(runningMode&(0x01))
 #define IS_BALANCE_MODE			(runningMode&(0x02))
 #define IS_DRIVING_MODE			(runningMode&(0x04))
-
-#define IS_CLEAR()			(runningMode&(0x08))
+#define IS_CLEAR_OLED			(runningMode&(0x08))
 
 #define SET_OLED_MODE()			(runningMode|=(0x01))
 #define SET_BALANCE_MODE()		(runningMode|=(0x02))
 #define SET_DRIVING_MODE()		(runningMode|=(0x04))
-
-#define SET_CLEAR()		(runningMode|=(0x08))
+#define SET_CLEAR_OLED()		(runningMode|=(0x08))
 
 #define CLR_OLED_MODE()			(runningMode&=~(0x01))
 #define CLR_BALANCE_MODE()		(runningMode&=~(0x02))
 #define CLR_DRIVING_MODE()		(runningMode&=~(0x04))
-
-#define CLR_CLEAR()		(runningMode&=~(0x08))
+#define CLR_CLEAR_OLED()		(runningMode&=~(0x08))
 
 
 extern uint_8 	peripheralRun;

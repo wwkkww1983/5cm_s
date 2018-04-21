@@ -5,35 +5,34 @@
 //版本更新：2018-03-20  V1.0
 //芯片类型：KEAZ128
 //作者：莫庸
+//修改：YTom
 //===========================================================================
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
 
 #include "OLED.h"
 
-/*DISPLAY FLAGS: 'change flag','add flag','subtract flag'*/
-#define IS_OLED_CHANGED  		((flag)&(0x01))
-#define SET_CHANGE_FLAG()		((flag)|=(0x01))
-#define CLR_CHANGE_FLAG()		((flag)&=(~0x01))
-
-#define IS_OLED_ADD				((flag)&(0x02))
-#define SET_ADD_FLAG()			((flag)|=(0x02))
-#define CLR_ADD_FLAG()			((flag)&=(~0x02))
-
-#define IS_OLED_SUBTRACT		((flag)&(0x04))
-#define SET_SUBTRACT_FLAG()		((flag)|=(0x04))
-#define CLR_SUBTRACT_FLAG()		((flag)&=(~0x04))
-
 #define MIN(X,Y) (X>Y?Y:X)
 
-#define DATANUM 17		//the number of datas to be displayed
-#define MAXLINE 8		//the maximum number of lines that can be displayed on a single page
-#define SENSOR_PAGE 3	//refer to pages displaying datas read from sensors and are always changing
+#define DATANUM 		17		//the number of datas to be displayed
+#define MAXLINE 		8		//the maximum number of lines that can be displayed on a single page
+#define NAMELENGTH		5		//characters limit for argName
+
+#define VARIABLE_PAGE	0		//refer to pages displaying changeable variables(limit in this page)
+#define SENSOR_PAGE 	1		//refer to pages displaying datas read from sensors and are always changing
+#define DATA0_PAGE		2		//refer to pages displaying common datas
+#define DATA1_PAGE		3		//refer to pages displaying common datas
+#define DATA2_PAGE		4		//refer to pages displaying common datas
+
+#define PAGE_COUNT		4
 
 typedef struct{
-	int_8  argName[6];	//argument name
-	int_16* argValue;	//argument value
-	uint_8  delta;		//argument variation
+	int_8  	argName[NAMELENGTH+1];	//argument name
+	int_16* argValue;		//argument value
+	uint_8  delta;			//argument variation
+	uint8_t	changeable:1;	//is value changeable
+	uint8_t	sensorVal:1;	//is value for sensor
+	uint8_t pageNum:6;		//display in which page
 }displayItem, *pdisplayItem;
 
 //===========================================================================
@@ -51,8 +50,7 @@ void OLEDDisplay(pdisplayItem items);
 //Arguements: null
 //Others: null
 //===========================================================================
-void pageUp(void);
-void pageDown(void);
+void pageSwitch(void);
 
 //===========================================================================
 //Function: To deal with global arguement 'line'
@@ -60,8 +58,7 @@ void pageDown(void);
 //Arguements: null
 //Others: null
 //===========================================================================
-void lineUp(void);
-void lineDown(void);
+void lineSwitch(void);
 
 //===========================================================================
 //Function: To increse/decrese a data assigned by page and line 

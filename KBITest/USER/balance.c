@@ -14,8 +14,12 @@ Pin mapping:
 (ok)Gyro		I2C_SDA	B6
 				I2C_SCL	B7
 (ok)Acce(ADC):	VO1	A6		VO2	F5		VO3	A7
-	KBI:		K1	C7		K2	A3		K3	D3
-				K4	C6		K5	A2		K6	D4
+	KBI:		K1	C7	Data+
+				K2	A3	balance mode
+				K3	D3	Page+
+				K4	C6	Line+
+				K5	A2	driving mode
+				K6	D4	Data-
 	ADC:		CH1			CH2			CH3
 				CH4			CH5			CH6
 				CH7
@@ -46,6 +50,7 @@ float setGoalRPM[2] 	= {0};		// Speed Goal
 int_16 globalCount 		= 0;
 
 // Local variable
+int_16 		array[3] = {20,50,80};
 displayItem items[DATANUM];
 int_16 		GyroMid;
 PID 		PID_Speed[2];
@@ -80,11 +85,7 @@ int main(){
 	PIDInit(&PID_Speed[0],PID_p,PID_i,PID_d);
 	PIDInit(&PID_Speed[1],PID_p,PID_i,PID_d);
 	CLR_SPEED_CONTROL();
-	
-	SET_OLED_MODE();
-	CLR_BALANCE_MODE();
-	CLR_DRIVING_MODE();
-	
+		
 	// Firstly read value
 	acceReadL(MMA_ADDR, 0x01, 6, rawAcce);
 	acceSolveData(MMA_12bit_Mode, rawAcce, acceValue);
@@ -94,15 +95,14 @@ int main(){
 	// For test
 //	setGoalRPM[0] = 400.0;
 //	setGoalRPM[1] = 400.0;
-
 //	SET_CLEAR();
 //	CLR_OLED_MODE();
 //	CLR_DRIVING_MODE();
-	SET_BALANCE_MODE();
-	
-	setGoalRPM[0] = 400.0;
-	setGoalRPM[1] = 400.0;
-	
+//	SET_BALANCE_MODE();
+
+	SET_OLED_MODE();
+	CLR_BALANCE_MODE();
+	CLR_DRIVING_MODE();
 	
 	// PIT initialize, TimeUnit=0.5ms, global timer
 	// This means start ALL works
@@ -115,16 +115,16 @@ int main(){
 				// Refresh display
 				OLEDDisplay(items);
 			}else if(IS_BALANCE_MODE){
-				if(IS_CLEAR()) {
-					CLR_CLEAR();
+				if(IS_CLEAR_OLED) {
+					CLR_CLEAR_OLED();
 					OLED_Clear();
 				}
-				OLED_ShowString(0,0,"Blance...");
-				dis_num(1,0,(uint_16)speedRPM[0]);
-				dis_num(2,0,(uint_16)speedRPM[1]);
+				OLED_ShowString(0,0,"Balance...");
+				dis_num(0,1,(int)speedRPM[0]);
+				dis_num(0,2,(int)speedRPM[1]);
 			}else if(IS_DRIVING_MODE) {
-				if(IS_CLEAR()) {
-					CLR_CLEAR();
+				if(IS_CLEAR_OLED) {
+					CLR_CLEAR_OLED();
 					OLED_Clear();
 				}
 				OLED_ShowString(0,0,"Driving...");
@@ -192,76 +192,83 @@ void globalKalmanLoop(void)
 //============================================================================
 void globalDisplayInit(void)
 {
-	int_16 array[3] = {20,50,80};
+	
 	
 	strcpy(items[0].argName,"VecA0");	// Velocity from encoder_1
 	items[0].argValue = &frequency[0];
-	items[0].delta = 0;
+	items[0].sensorVal = 1;
+	items[0].pageNum = SENSOR_PAGE;
 	
 	strcpy(items[1].argName,"VecA1");	// Velocity from encoder_2
 	items[1].argValue = &frequency[1];
-	items[1].delta = 0;
+	items[1].sensorVal = 1;
+	items[1].pageNum = SENSOR_PAGE;
 	
 	strcpy(items[2].argName,"Cunt1");	// Tire round from encoder_1
 	items[2].argValue = &countLoop[0];
-	items[2].delta = 0;
+	items[2].pageNum = DATA0_PAGE;
 	
 	strcpy(items[3].argName,"Cunt2");	// Tire round from encoder_1
 	items[3].argValue = &countLoop[1];
-	items[3].delta = 0;
+	items[3].pageNum = DATA0_PAGE;
 	
 	strcpy(items[4].argName,"VecS1");	// Velocity sent to motor 1
 	items[4].argValue = &sSpeed[0];
-	items[4].delta = 0;
+	items[4].pageNum = DATA0_PAGE;
 	
 	strcpy(items[5].argName,"VecS2");	// Velocity sent to motor 2
 	items[5].argValue = &sSpeed[1];
-	items[5].delta = 0;
+	items[5].pageNum = DATA0_PAGE;
 	//============================================================================
 	strcpy(items[6].argName,"xAxis");	//
 	items[6].argValue = &acceValue[0];
-	items[6].delta = 0;
+	items[6].pageNum = SENSOR_PAGE;
 
 	strcpy(items[7].argName,"yAxis");	//
 	items[7].argValue = &acceValue[1];
-	items[7].delta = 0;
+	items[7].pageNum = SENSOR_PAGE;
 
-	strcpy(items[7].argName,"zAxis");	//
-	items[7].argValue = &acceValue[2];
-	items[7].delta = 0;
+	strcpy(items[8].argName,"zAxis");	//
+	items[8].argValue = &acceValue[2];
+	items[8].pageNum = SENSOR_PAGE;
 
 	strcpy(items[9].argName,"GYROv");	//
 	items[9].argValue = &angVelocity;
-	items[9].delta = 0;
+	items[9].pageNum = DATA0_PAGE;
 
 	strcpy(items[10].argName,"GYMid");	// Middle value of GYRO
 	items[10].argValue = &GyroMid;
-	items[10].delta = 0;
+	items[10].pageNum = DATA0_PAGE;
 
 	strcpy(items[11].argName,"acAng");	// Angle from accelerometer
 	items[11].argValue = &acceAngle;
-	items[11].delta = 0;
+	items[11].pageNum = DATA0_PAGE;
 
 	strcpy(items[12].argName,"klAng");	// Angle from Kalman Filter
 	items[12].argValue = &KalmanAngle;
-	items[12].delta = 0;
+	items[12].pageNum = DATA0_PAGE;
 	//============================================================================
-	strcpy(items[13].argName,"xAxi1");	//
+	strcpy(items[13].argName,"xAxis");	//
 	items[13].argValue = &array[0];
 	items[13].delta = 2;
+	items[13].changeable = 1;
+	items[13].pageNum = VARIABLE_PAGE;
 
-	strcpy(items[14].argName,"yAxi2");	//
+	strcpy(items[14].argName,"yAxis");	//
 	items[14].argValue = &array[1];
 	items[14].delta = 3;
+	items[14].changeable = 1;
+	items[14].pageNum = VARIABLE_PAGE;
 
-	strcpy(items[15].argName,"zAxi3");	//
+	strcpy(items[15].argName,"zAxis");	//
 	items[15].argValue = &array[2];
 	items[15].delta = 5;
+	items[15].changeable = 1;
+	items[15].pageNum = VARIABLE_PAGE;
 	
 	strcpy(items[16].argName,"gCUNT");	//
 	items[16].argValue = &globalCount;
-	items[16].delta = 0;
-	
+	items[16].pageNum = DATA1_PAGE;
 }
 //============================================================================
 //============================================================================

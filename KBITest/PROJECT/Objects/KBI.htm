@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\KBI.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\KBI.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat Apr 21 21:28:41 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Apr 22 01:35:23 2018
 <BR><P>
 <H3>Maximum Stack Usage =        248 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -390,7 +390,6 @@ Global Symbols
 <P><STRONG><a name="[62]"></a>__aeabi_f2uiz</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, ffixui.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_PWM_set_duty
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_PWM_init
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
@@ -759,11 +758,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 </UL>
 
-<P><STRONG><a name="[23]"></a>KBI0_IRQHandler</STRONG> (Thumb, 764 bytes, Stack size 8 bytes, balance_isr.o(i.KBI0_IRQHandler))
+<P><STRONG><a name="[23]"></a>KBI0_IRQHandler</STRONG> (Thumb, 880 bytes, Stack size 8 bytes, balance_isr.o(i.KBI0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = KBI0_IRQHandler &rArr; delay_us
 </UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pageUp
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pageDown
+<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pageSwitch
+<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lineSwitch
 <LI><a href="#[71]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dataIncrement
 <LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dataDecrement
 <LI><a href="#[70]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_us
@@ -785,8 +784,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKBIInit
 </UL>
 
-<P><STRONG><a name="[79]"></a>OLEDDisplay</STRONG> (Thumb, 360 bytes, Stack size 16 bytes, display.o(i.OLEDDisplay))
-<BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = OLEDDisplay &rArr; dis_num &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; gpio_set
+<P><STRONG><a name="[79]"></a>OLEDDisplay</STRONG> (Thumb, 390 bytes, Stack size 8 bytes, display.o(i.OLEDDisplay))
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = OLEDDisplay &rArr; dis_num &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_Set_Pos &rArr; OLED_WR_Byte &rArr; gpio_set
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;dis_num
 <LI><a href="#[7a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowString
@@ -1086,8 +1085,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a1]"></a>globalDisplayInit</STRONG> (Thumb, 376 bytes, Stack size 16 bytes, balance.o(i.globalDisplayInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = globalDisplayInit &rArr; strcpy
+<P><STRONG><a name="[a1]"></a>globalDisplayInit</STRONG> (Thumb, 648 bytes, Stack size 8 bytes, balance.o(i.globalDisplayInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = globalDisplayInit &rArr; strcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
 </UL>
@@ -1311,7 +1310,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[38]"></a>main</STRONG> (Thumb, 652 bytes, Stack size 24 bytes, balance.o(i.main))
+<P><STRONG><a name="[74]"></a>lineSwitch</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, display.o(i.lineSwitch))
+<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
+</UL>
+
+<P><STRONG><a name="[38]"></a>main</STRONG> (Thumb, 632 bytes, Stack size 24 bytes, balance.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = main &rArr; globalKalmanLoop &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acceSolveData
@@ -1324,7 +1327,6 @@ Global Symbols
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pitInit_us
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
-<LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
 <LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
@@ -1351,11 +1353,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_ShowNum
 </UL>
 
-<P><STRONG><a name="[74]"></a>pageDown</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, display.o(i.pageDown))
-<BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
-</UL>
-
-<P><STRONG><a name="[73]"></a>pageUp</STRONG> (Thumb, 46 bytes, Stack size 0 bytes, display.o(i.pageUp))
+<P><STRONG><a name="[73]"></a>pageSwitch</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, display.o(i.pageSwitch))
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
 </UL>
 

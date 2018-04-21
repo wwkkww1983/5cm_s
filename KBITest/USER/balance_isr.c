@@ -1,3 +1,11 @@
+//===========================================================================
+//文件名称：balance_isr.h
+//功能概要：中断函数文件
+//版权所有：同济大学Tu_smart智能车队
+//版本更新：2018-04-22 v1.0
+//芯片类型：KEAZ128
+//作者：YTom
+//===========================================================================
 #include "project.h"
 
 //============================================================================
@@ -92,74 +100,43 @@ void KBI0_IRQHandler(){
 		if(i>=ANTISHAKETIME){	// Confirm a movement
 		/* Now press off and last is on, Detect low level(on)*/
 			//keyboard1 pressed for the second time, dataIncrement()
-			if((flag&kbi_Press1) && (record&kbi_Press1)){ 
+			if(IS_OLED_MODE && (flag&kbi_Press1) && (record&kbi_Press1)){ 
 				record^=kbi_Press1; kbi0_Low(kbi_Press1);
 				dataIncrement();
 			}//keyboard6 pressed for the second time, dataDecrement()				
-			if((flag&kbi_Press6) && (record&kbi_Press6)){
+			if(IS_OLED_MODE && (flag&kbi_Press6) && (record&kbi_Press6)){
 				record^=kbi_Press6; kbi0_Low(kbi_Press6);
 				dataDecrement();
-			}
-			//-------------------------------------------------------------------------
-			//keyboard3&keyboard4 are pressed at the same time
-//			if((flag&kbi_Press3) && (record&kbi_Press3) && (flag&kbi_Press4) && (record&kbi_Press4)){
-//				if(IS_OLED_MODE){
-//					CLR_OLED_MODE();
-//					SET_BALANCE_MODE();
-//				}else if(IS_BALANCE_MODE){
-//					CLR_BALANCE_MODE();
-//					SET_OLED_MODE();
-//				}else{
-//					CLR_BALANCE_MODE();
-//					CLR_DRIVING_MODE();
-//					SET_OLED_MODE();
-//				}
-//			} //keyboard3 pressed for the second time, pageUp()	
-//			else 
-			if((flag&kbi_Press3) && (record&kbi_Press3)){
+			}//keyboard3 pressed for the second time, pageUp()	
+			if(IS_OLED_MODE && (flag&kbi_Press3) && (record&kbi_Press3)){
 				record^=kbi_Press3; kbi0_Low(kbi_Press3); 
-				pageUp();
-			}//keyboard4 pressed for the second time, pageDown()	
-			if((flag&kbi_Press4) && (record&kbi_Press4)){ 
+				pageSwitch();
+			}//keyboard4 pressed for the second time, lineUp()	
+			if(IS_OLED_MODE && (flag&kbi_Press4) && (record&kbi_Press4)){ 
 				record^=kbi_Press4; kbi0_Low(kbi_Press4);
-				pageDown();
-			}
-			//-------------------------------------------------------------------------
-			//keyboard2&keyboard5 are pressed at the same time, enable&disable Driving mode
-//			if((flag&kbi_Press2) && (record&kbi_Press2) && (flag&kbi_Press5) && (record&kbi_Press5)){
-//				if(IS_DRIVING_MODE){
-//					CLR_DRIVING_MODE();
-//					SET_OLED_MODE();
-//				}else{
-//					CLR_OLED_MODE();
-//					CLR_BALANCE_MODE();
-//					SET_DRIVING_MODE();
-//				}
-//			} //keyboard2 pressed for the second time, lineUp()
-//			else 
-			if((flag&kbi_Press2) && (record&kbi_Press2)){
-//				record^=kbi_Press2; kbi0_Low(kbi_Press2);
-//				lineUp();
+				lineSwitch();
+			}//keyboard2 pressed for the second time, go into BALANCEs mode
+			if(!IS_BALANCE_MODE && (flag&kbi_Press2) && (record&kbi_Press2)){
+				record^=kbi_Press2; kbi0_Low(kbi_Press2);
 				
-				SET_CLEAR();
+				SET_CLEAR_OLED();
 				CLR_OLED_MODE();
 				CLR_DRIVING_MODE();
 				SET_BALANCE_MODE();
-				
 				setGoalRPM[0] = 400.0;
 				setGoalRPM[1] = 400.0;
-			}//keyboard5 pressed for the second time, lineDown()	
-			if((flag&kbi_Press5) && (record&kbi_Press5)){
-//				record^=kbi_Press5; kbi0_Low(kbi_Press5); 
-//				lineDown();
-				SET_CLEAR();
+			}//keyboard5 pressed for the second time, go into DRIVING mode
+			if(!IS_DRIVING_MODE && (flag&kbi_Press5) && (record&kbi_Press5)){
+				record^=kbi_Press5; kbi0_Low(kbi_Press5);
+				
+				SET_CLEAR_OLED();
 				CLR_OLED_MODE();
 				CLR_BALANCE_MODE();
 				SET_DRIVING_MODE();
-				
 				setGoalRPM[0] = 0.0;
 				setGoalRPM[1] = 0.0;
 			}
+//-------------------------------------------------------------------------
 		/* Now press on, Detect high level(off)*/
 			//keyboard1-6 pressed for the first time
 			if(!(flag&kbi_Press1) && !(record&kbi_Press1))	{ record^=kbi_Press1; kbi0_High(kbi_Press1); }	
