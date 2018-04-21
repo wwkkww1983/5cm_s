@@ -1,0 +1,26 @@
+--cpu Cortex-M0+
+".\objects\startup_skeaz1284.o"
+".\objects\system_skeaz1284.o"
+".\objects\gpio.o"
+".\objects\kbi.o"
+".\objects\i2c.o"
+".\objects\pit.o"
+".\objects\adc.o"
+".\objects\pwm.o"
+".\objects\incap.o"
+".\objects\common.o"
+".\objects\oled.o"
+".\objects\display.o"
+".\objects\delay.o"
+".\objects\accelerometer.o"
+".\objects\gyro.o"
+".\objects\pid.o"
+".\objects\balancecontrol.o"
+".\objects\encoder.o"
+".\objects\motor.o"
+".\objects\balance.o"
+".\objects\balance_isr.o"
+--strict --scatter ".\Objects\KBI.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\KBI.map" -o .\Objects\KBI.axf
