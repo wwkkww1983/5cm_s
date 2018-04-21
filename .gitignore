@@ -1,2 +1,5 @@
 *.tmp
 *.TMP
+
+./KBITest/PROJECT/Objects/*
+./KBITest/PROJECT/Listings/*
