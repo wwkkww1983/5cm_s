@@ -493,14 +493,14 @@
           <GroupName>test</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>balance.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\USER\test\main.c</FilePath>
+              <FilePath>..\USER\balance.c</FilePath>
             </File>
             <File>
-              <FileName>isr.c</FileName>
+              <FileName>balance_isr.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\USER\test\isr.c</FilePath>
+              <FilePath>..\USER\balance_isr.c</FilePath>
             </File>
           </Files>
         </Group>

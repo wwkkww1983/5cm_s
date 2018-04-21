@@ -35,7 +35,7 @@ void ADCInit(void){
 //Function: To Read the value converted from the ADC channel
 //Return: return the average of the middle 6 values stored in the FIFO queue
 //Arguements: channel: the channel where the values are read and converted
-//                     can be ADC_1 --- ADC_7 
+//                     can be ADC_1 --- ADC_7
 //Others: the values are stored in FIFO queue with a depth of 8 by default
 //===========================================================================
 uint_16 ADCRead(uint_8 channel){

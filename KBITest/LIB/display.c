@@ -9,7 +9,7 @@
 #include "display.h"
 
 uint_8 page, line, flag = 1;
-char spaces[] = "                   ";
+char spaces[] = "                 ";
 //===========================================================================
 //Function: To display all the items on the OLED screen
 //Return: null
@@ -19,35 +19,38 @@ char spaces[] = "                   ";
 //===========================================================================
 void OLEDDisplay(pdisplayItem items){
 	//refer to pages displaying datas read from sensors and are always changing
-	if(page<=SENSOR_PAGE) SET_CHANGE_FLAG();
+	if(page<SENSOR_PAGE) SET_CHANGE_FLAG();
 	//detect add or subtract action
 	if(IS_OLED_ADD){
 		SET_CHANGE_FLAG();
-		*(items[line+page*4].argValue) += items[line+page*4].delta;
+		*(items[line+page*MAXLINE].argValue) += items[line+page*MAXLINE].delta;
 		CLR_ADD_FLAG();
 	}
 	if(IS_OLED_SUBTRACT){
 		SET_CHANGE_FLAG();
-		*(items[line+page*4].argValue) -= items[line+page*4].delta;
+		*(items[line+page*MAXLINE].argValue) -= items[line+page*MAXLINE].delta;
 		CLR_SUBTRACT_FLAG();
 	}
 
 	//detect whether the screen datas have be updated
 	if(IS_OLED_CHANGED){
 		CLR_CHANGE_FLAG();
-		uint_8 index;
 		//OLED_Clear();
-
+		uint_8 index;
 		for(index=0; (index<MAXLINE); index++){
 			if((index+MAXLINE*page)>=DATANUM){
-			OLED_ShowString(0,2*index, spaces);	
+//			OLED_ShowString(0,2*index, spaces);	
+				OLED_ShowString(0,index, spaces);
 			}else{
-				OLED_ShowString(0,2*index, items[index+MAXLINE*page].argName);
+//				OLED_ShowString(0,2*index, items[index+MAXLINE*page].argName);
+				OLED_ShowString(0,index, items[index+MAXLINE*page].argName);
 				//display '*'
-				if(index==line)		OLED_ShowChar(56,2*index,'*');
-				else 							OLED_ShowChar(56,2*index,' ');
-			
-				dis_num(0,2*index, *(items[index+MAXLINE*page].argValue));
+//				if(index==line)		OLED_ShowChar(56,2*index,'*');
+//				else 				OLED_ShowChar(56,2*index,' ');
+				if(index==line)		OLED_ShowChar(56,index,'*');
+				else 				OLED_ShowChar(56,index,' ');
+//				dis_num(0,2*index, *(items[index+MAXLINE*page].argValue));
+				dis_num(0,index, *(items[index+MAXLINE*page].argValue));
 			}
 		}
 	}

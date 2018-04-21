@@ -25,7 +25,7 @@
 
 // D(irection) phase value port, high for ClockWise and low the reverse
 #define directionPort1			PORTA|(0)
-#define directionPort2			PORTH|(2)
+#define directionPort2			PORTC|(4)
 
 //==========================================================================
 //Function: To initialize a encoder with two PWM ports
