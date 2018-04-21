@@ -49,7 +49,6 @@ void FTM0_IRQHandler(){
 		EncoderClrFlag(ENCODER_1);
 	}
 }
-
 void FTM1_IRQHandler(){
 	static uint_16 results[10]={0};
 	static uint_8 index = 0;
