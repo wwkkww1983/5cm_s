@@ -487,9 +487,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>user</GroupName>
-        </Group>
-        <Group>
           <GroupName>test</GroupName>
           <Files>
             <File>

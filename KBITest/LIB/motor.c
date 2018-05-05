@@ -82,10 +82,12 @@ void setReveDuty(int motorNum,float duty){
 		}
 }
 
-
 float calcDuty(float speedrpm)
 {
-	return 0.03*speedrpm+20.0;
+	static float ret;
+	
+	ret = speedrpm*speedIndex/200;
+	return (ret>1.0)?ret+11:0;
 }
 
 float speedLeagalize(float duty)

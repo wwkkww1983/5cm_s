@@ -58,9 +58,10 @@
 #define GYRO_ACCE_TIME			2u 			//read gyro&acce every 			1ms		1000Hz
 #define POSITION_TIME			2u 			//compute position every 		1ms		1000Hz
 #define ENCODER_TIME			8u			//read encoder every 			4ms		250Hz
-#define SPEED_CONTRO_LTIME		8u			//run speed control every 		4ms		250Hz
+//#define SPEED_CONTRO_LTIME		8u			//run speed control every 		4ms		250Hz
+#define SPEED_CONTRO_LTIME		10u			//run speed control every 		20ms		200Hz
 #define DIR_CONTROL_TIME		10u			//run direction control every 	5ms		200Hz
-#define BALANCE_CONTROL_TIME	10u			//run balance control every 	5ms		200Hz
+#define BALANCE_CONTROL_TIME	40u			//run balance control every 	5ms		200Hz
 #define OLED_CHANGE_TIME		1000u		//update oled display every 	500ms	2Hz
 //#define ELAPSE_TIME				1000u		//elapse time 20ms
 
@@ -84,14 +85,14 @@
 #define CLR_DRIVING_MODE()		(runningMode&=~(0x04))
 #define CLR_CLEAR_OLED()		(runningMode&=~(0x08))
 
-
 extern uint_8 	peripheralRun;
 extern uint_8 	runningMode;
 
 extern uint_8 	rawAcce[8];
 extern int_16 	acceValue[3];
 extern int_16 	gyroValue[5], xAxis[5], zAxis[5], angVelocity, xAxisMean, zAxisMean, gyroMean;
-extern int_16 	acceAngle, gyroAngle, KalmanAngle;
+extern int_16 	acceAngle, gyroAngle;
+extern float	KalmanAngle;
 
 // For encoder (velocity feedback)
 extern int_16 	countLoop[2];		// 
@@ -101,9 +102,18 @@ extern float 	sendSpeed[2];		// Speed sent to motor
 extern int_16 	sSpeed[2];			// Display conertion value for sendSpeed
 extern float 	setGoalRPM[2];		// Speed Goal
 
+extern PID 		PID_Speed[2];
+extern int_16 	PID_p;				// 
+extern int_16 	PID_i;				// 
+extern int_16 	PID_d;				// 
+extern int_16 	maxLIM;				// 
+
+extern int_16	speedIndex;
+
 
 extern int_16 globalCount;
 
+void globalResetMid(void);
 
 #endif /* PROJECT_H_ */
 

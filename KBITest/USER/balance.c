@@ -43,24 +43,34 @@ uint_8 runningMode = 0;
 uint_8 rawAcce[8] 		= {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 int_16 acceValue[3] 	= {0};
 int_16 gyroValue[5], xAxis[5], zAxis[5], angVelocity, xAxisMean, zAxisMean, gyroMean;
-int_16 acceAngle, gyroAngle, KalmanAngle;
+int_16 acceAngle, gyroAngle;
+float KalmanAngle;
 int_16 sSpeed[2] 		= {0,0};			
-float sendSpeed[2] 		= {0.f,0.f};
-float setGoalRPM[2] 	= {0};		// Speed Goal
+float  sendSpeed[2] 	= {0.f,0.f};
+float  setGoalRPM[2] 	= {0.f,0.f};		// Speed Goal
 int_16 globalCount 		= 0;
 
 // Local variable
-int_16 		array[3] = {20,50,80};
+//int_16 		array[3] = {};
 displayItem items[DATANUM];
-int_16 		GyroMid;
+float 		GyroMid;
 PID 		PID_Speed[2];
-#define PID_p	1.5f
-#define PID_i	0.f
-#define PID_d	0.f
+int_16		delta;
+int_16		GM,KA;
+
+int_16 PID_p 	= 28;		// /1
+int_16 PID_i	= 0;		// /10
+int_16 PID_d	= 10;		// /10
+int_16 speedIndex = 5;		// /200
+int_16 deltaExp = 10;		// *1.0
+int_16 maxLIM = 40;			//
+
+#define PID_LIMIT_SPEED		18.0
 
 void globalDisplayInit(void);
 void globalKBIInit(void);
 void globalKalmanLoop(void);
+float PIDLimit(float value, float limit);
 
 int main(){
 	
@@ -82,15 +92,16 @@ int main(){
 	initMotor(MOTOR_1,10);	// Output frequency 10kHz
 	initMotor(MOTOR_2,10);
 	// PID initialization
-	PIDInit(&PID_Speed[0],PID_p,PID_i,PID_d);
-	PIDInit(&PID_Speed[1],PID_p,PID_i,PID_d);
+	
 	CLR_SPEED_CONTROL();
-		
+
 	// Firstly read value
-	acceReadL(MMA_ADDR, 0x01, 6, rawAcce);
-	acceSolveData(MMA_12bit_Mode, rawAcce, acceValue);
-	gyroAngle = atan2(-acceValue[0],-acceValue[2])*180/PI;
-	GyroMid = getGyroMid(VO1);
+//	acceReadL(MMA_ADDR, 0x01, 6, rawAcce);
+//	acceSolveData(MMA_12bit_Mode, rawAcce, acceValue);
+//	gyroAngle = atan2(-acceValue[0],-acceValue[2])*180/PI;
+//	GyroMid = getGyroMid(VO1);
+
+	GyroMid = 0;
 	
 	// For test
 //	setGoalRPM[0] = 400.0;
@@ -104,6 +115,9 @@ int main(){
 	CLR_BALANCE_MODE();
 	CLR_DRIVING_MODE();
 	
+//	setForwDuty(MOTOR_1,30);
+//	setForwDuty(MOTOR_2,30);
+	
 	// PIT initialize, TimeUnit=0.5ms, global timer
 	// This means start ALL works
 	pitInit_us(pit_CH0, GLOBAL_TIME_UNIT);
@@ -113,21 +127,21 @@ int main(){
 			CLR_DISP_REFRESH();
 			if(IS_OLED_MODE){
 				// Refresh display
+				GM = GyroMid;
+				KA = KalmanAngle;
 				OLEDDisplay(items);
 			}else if(IS_BALANCE_MODE){
 				if(IS_CLEAR_OLED) {
 					CLR_CLEAR_OLED();
 					OLED_Clear();
+					OLED_ShowString(0,0,"Balance...");
 				}
-				OLED_ShowString(0,0,"Balance...");
-				dis_num(0,1,(int)speedRPM[0]);
-				dis_num(0,2,(int)speedRPM[1]);
 			}else if(IS_DRIVING_MODE) {
 				if(IS_CLEAR_OLED) {
 					CLR_CLEAR_OLED();
 					OLED_Clear();
+					OLED_ShowString(0,0,"Driving...");
 				}
-				OLED_ShowString(0,0,"Driving...");
 			}
 		}
 		if(GYRO_ACCE_FLAG){
@@ -137,21 +151,45 @@ int main(){
 		}
 		if((IS_BALANCE_MODE) && (SPEED_CONTROL)){
 			CLR_SPEED_CONTROL();
-			// PID control
-			sendSpeed[0] = calcDuty(PIDcalc(&PID_Speed[0],setGoalRPM[0],speedRPM[0]));
-			sendSpeed[1] = calcDuty(PIDcalc(&PID_Speed[1],setGoalRPM[1],speedRPM[1]));
-			setForwDuty(MOTOR_1,sendSpeed[0]);
-			setForwDuty(MOTOR_2,sendSpeed[1]);
-			sSpeed[0] = (int16_t)sendSpeed[0];
-			sSpeed[1] = (int16_t)sendSpeed[1];
+			// PID controls
+//			delta = GyroMid-KalmanAngle;
+//			setGoalRPM[0] = setGoalRPM[1] = fabs(delta*deltaExp*1.0);
+//			sendSpeed[0] = calcDuty(PIDcalc(&PID_Speed[0],setGoalRPM[0],speedRPM[0]));
+//			sendSpeed[1] = calcDuty(PIDcalc(&PID_Speed[1],setGoalRPM[1],speedRPM[1]));
+			sendSpeed[0] = PIDcalc(&PID_Speed[0],GyroMid,KalmanAngle);
+			sendSpeed[1] = PIDcalc(&PID_Speed[1],GyroMid,KalmanAngle);
+			if(sendSpeed[0]>0){
+				setForwDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[0]),PID_LIMIT_SPEED));
+			}else{
+				setReveDuty(MOTOR_1,PIDLimit(calcDuty(-sendSpeed[0]),PID_LIMIT_SPEED)+3.0);
+			}
+			
+			if(sendSpeed[1]>0){
+				setForwDuty(MOTOR_2,PIDLimit(calcDuty(sendSpeed[1]),PID_LIMIT_SPEED));
+			}else{
+				setReveDuty(MOTOR_2,PIDLimit(calcDuty(-sendSpeed[1]),PID_LIMIT_SPEED)+3.0);
+			}
 		}
 		if(BALANCE_CONTROL){
 			CLR_BALANCE_CONTROL();
 			// TODO...
+//			setForwDuty(MOTOR_1,PID_d);
+//			setForwDuty(MOTOR_2,PID_d);
 		}
 	}
 }
 
+float PIDLimit(float value, float limit)
+{
+	return (value>limit)?limit:value;
+}
+
+//============================================================================
+//============================================================================
+void globalResetMid(void)
+{
+	GyroMid = KalmanAngle;
+}
 
 //============================================================================
 //============================================================================
@@ -192,8 +230,6 @@ void globalKalmanLoop(void)
 //============================================================================
 void globalDisplayInit(void)
 {
-	
-	
 	strcpy(items[0].argName,"VecA0");	// Velocity from encoder_1
 	items[0].argValue = &frequency[0];
 	items[0].sensorVal = 1;
@@ -237,7 +273,7 @@ void globalDisplayInit(void)
 	items[9].pageNum = DATA0_PAGE;
 
 	strcpy(items[10].argName,"GYMid");	// Middle value of GYRO
-	items[10].argValue = &GyroMid;
+	items[10].argValue = &GM;
 	items[10].pageNum = DATA0_PAGE;
 
 	strcpy(items[11].argName,"acAng");	// Angle from accelerometer
@@ -245,30 +281,48 @@ void globalDisplayInit(void)
 	items[11].pageNum = DATA0_PAGE;
 
 	strcpy(items[12].argName,"klAng");	// Angle from Kalman Filter
-	items[12].argValue = &KalmanAngle;
+	items[12].argValue = &KA;
 	items[12].pageNum = DATA0_PAGE;
 	//============================================================================
-	strcpy(items[13].argName,"xAxis");	//
-	items[13].argValue = &array[0];
-	items[13].delta = 2;
+	strcpy(items[13].argName,"PID_p");	//
+	items[13].argValue = &PID_p;
+	items[13].delta = 1;
 	items[13].changeable = 1;
 	items[13].pageNum = VARIABLE_PAGE;
 
-	strcpy(items[14].argName,"yAxis");	//
-	items[14].argValue = &array[1];
-	items[14].delta = 3;
+	strcpy(items[14].argName,"PID_i");	//
+	items[14].argValue = &PID_i;
+	items[14].delta = 2;
 	items[14].changeable = 1;
 	items[14].pageNum = VARIABLE_PAGE;
 
-	strcpy(items[15].argName,"zAxis");	//
-	items[15].argValue = &array[2];
-	items[15].delta = 5;
+	strcpy(items[15].argName,"PID_d");	//
+	items[15].argValue = &PID_d;
+	items[15].delta = 2;
 	items[15].changeable = 1;
 	items[15].pageNum = VARIABLE_PAGE;
 	
 	strcpy(items[16].argName,"gCUNT");	//
 	items[16].argValue = &globalCount;
 	items[16].pageNum = DATA1_PAGE;
+	
+	strcpy(items[17].argName,"K_spd");	//
+	items[17].argValue = &speedIndex;
+	items[17].delta = 1;
+	items[17].changeable = 1;
+	items[17].pageNum = VARIABLE_PAGE;
+	
+	strcpy(items[18].argName,"E_del");	//
+	items[18].argValue = &deltaExp;
+	items[18].delta = 1;
+	items[18].changeable = 1;
+	items[18].pageNum = VARIABLE_PAGE;
+	
+	strcpy(items[19].argName,"I_max");	//
+	items[19].argValue = &maxLIM;
+	items[19].delta = 1;
+	items[19].changeable = 1;
+	items[19].pageNum = VARIABLE_PAGE;
 }
 //============================================================================
 //============================================================================

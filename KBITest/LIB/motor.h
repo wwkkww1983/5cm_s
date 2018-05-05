@@ -7,6 +7,7 @@
 //作者：Shine Wong
 //===========================================================================
 #include "pwm.h"
+#include "project.h"
 
 #ifndef MOTOR_H_
 #define MOTOR_H_
@@ -15,7 +16,7 @@
 #define MOTOR_1 1
 #define MOTOR_2 2
 
-#define MOTOR_SPEEDLIMIT		60
+#define MOTOR_SPEEDLIMIT		50
 
 //==========================================================================
 //Function: To initialize a motor with two PWM ports

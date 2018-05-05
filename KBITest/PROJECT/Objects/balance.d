@@ -27,6 +27,7 @@
 .\objects\balance.o: ..\DRIVER\incap.h
 .\objects\balance.o: ..\LIB\motor.h
 .\objects\balance.o: ..\DRIVER\pwm.h
+.\objects\balance.o: ..\USER\project.h
 .\objects\balance.o: ..\LIB\encoder.h
 .\objects\balance.o: ..\DRIVER\incap.h
 .\objects\balance.o: ..\LIB\PID.h

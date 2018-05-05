@@ -71,22 +71,19 @@ void EncoderClrFlag(uint_8 encoderNum){
 //        the average frequency of the PWM signal
 //==========================================================================
 int_16 EncoderRead(uint_8 encoderNum){
-	uint_8 direction;
 	uint_16 count;
 	switch(encoderNum){
 		case ENCODER_1:
 			count = FTM0_C1V;
-			direction = gpio_get(directionPort1);
-			break;
+//			if(gpio_get(directionPort1)) return -count;
+//			else return count;
 		case ENCODER_2:
 			count = FTM1_C1V;
-			direction = gpio_get(directionPort2);
-			break;
+//			if(gpio_get(directionPort2)) return count;
+//			else return -count;
 		default:
 			break;
 	}
-	//if(direction) return count;
-	//if(!direction) return -count;
 	return count;
 }
 

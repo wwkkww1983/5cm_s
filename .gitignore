@@ -1,5 +1,5 @@
 *.tmp
 *.TMP
 
-Objects/*
-Listings/*
+Objects/
+Listings/

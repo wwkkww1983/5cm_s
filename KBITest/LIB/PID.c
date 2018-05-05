@@ -7,6 +7,7 @@
 //作者：Shine Wong
 //===========================================================================
 #include "PID.h"
+#include <math.h>
 
 //===========================================================================
 //Function: Initialize PID structure parameters.
@@ -15,7 +16,7 @@
 //			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
 //Others: null
 //===========================================================================
-void PIDInit(pPID pidController, float Kp, float Ki, float Kd)
+void PIDInit(pPID pidController, float Kp, float Ki, float Kd, float limit)
 {
 	pidController->proportion = Kp;
 	pidController->integral = Ki;
@@ -24,6 +25,7 @@ void PIDInit(pPID pidController, float Kp, float Ki, float Kd)
 	pidController->lastError = 0;
 	pidController->prevError = 0;
 	pidController->sumError = 0;
+	pidController->maxSum = limit;
 	pidController->lastOutput = 0;
 }
 //===========================================================================
@@ -59,10 +61,12 @@ void PIDInit(pPID pidController, float Kp, float Ki, float Kd)
 float PIDcalc(pPID pidController, float gloal, float thisVal){
 	float error,output;
 	error = gloal - thisVal;
-	pidController->sumError += error;
-	output = pidController->proportion*error + pidController->integral*pidController->sumError + pidController->derivative*(pidController->lastError-error);
+	if(fabs(pidController->sumError) < pidController->maxSum) {
+		pidController->sumError += error;
+	}
+	output = pidController->proportion*error + pidController->integral*pidController->sumError + pidController->derivative*(error - pidController->lastError);
 	pidController->lastError  = error;
-	pidController->lastOutput = thisVal + output;
+	pidController->lastOutput = output;
 	return pidController->lastOutput;
 }
 

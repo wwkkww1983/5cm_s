@@ -27,6 +27,7 @@
 .\objects\balance_isr.o: ..\DRIVER\incap.h
 .\objects\balance_isr.o: ..\LIB\motor.h
 .\objects\balance_isr.o: ..\DRIVER\pwm.h
+.\objects\balance_isr.o: ..\USER\project.h
 .\objects\balance_isr.o: ..\LIB\encoder.h
 .\objects\balance_isr.o: ..\DRIVER\incap.h
 .\objects\balance_isr.o: ..\LIB\PID.h

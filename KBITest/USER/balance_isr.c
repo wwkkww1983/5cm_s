@@ -20,7 +20,7 @@
 //      375000*60/512/avg/3
 int_16 frequency[2] = {0,0};
 int_16 countLoop[2] = {0,0};
-float speedRPM[2] 	= {0.f,0.f};
+float speedRPM[2] 	= {0,0};
 #define SPEED_INDEX		14648.4f
 #define LOOP_PULSE		1536
 int avg = 0;
@@ -33,7 +33,6 @@ void FTM0_IRQHandler(){
 		if(count==LOOP_PULSE){
 			count=0;countLoop[0]++;
 		}
-		
 		results[index] = EncoderRead(ENCODER_1);
 		index++;
 		if(index == 10){
@@ -119,22 +118,29 @@ void KBI0_IRQHandler(){
 			if(!IS_BALANCE_MODE && (flag&kbi_Press2) && (record&kbi_Press2)){
 				record^=kbi_Press2; kbi0_Low(kbi_Press2);
 				
+				
+				setGoalRPM[0] = 0.0;
+				setGoalRPM[1] = 0.0;
+				PIDInit(&PID_Speed[0],PID_p/1.0,PID_i/10.0,PID_d/10.0,maxLIM);
+				PIDInit(&PID_Speed[1],PID_p/1.0,PID_i/10.0,PID_d/10.0,maxLIM);
+				globalResetMid();
+				
 				SET_CLEAR_OLED();
 				CLR_OLED_MODE();
 				CLR_DRIVING_MODE();
 				SET_BALANCE_MODE();
-				setGoalRPM[0] = 400.0;
-				setGoalRPM[1] = 400.0;
+				
 			}//keyboard5 pressed for the second time, go into DRIVING mode
 			if(!IS_DRIVING_MODE && (flag&kbi_Press5) && (record&kbi_Press5)){
 				record^=kbi_Press5; kbi0_Low(kbi_Press5);
 				
-				SET_CLEAR_OLED();
-				CLR_OLED_MODE();
-				CLR_BALANCE_MODE();
-				SET_DRIVING_MODE();
-				setGoalRPM[0] = 0.0;
-				setGoalRPM[1] = 0.0;
+				globalResetMid();
+//				SET_CLEAR_OLED();
+//				CLR_OLED_MODE();
+//				CLR_BALANCE_MODE();
+//				SET_DRIVING_MODE();
+//				setGoalRPM[0] = 0.0;
+//				setGoalRPM[1] = 0.0;
 			}
 //-------------------------------------------------------------------------
 		/* Now press on, Detect high level(off)*/
@@ -161,7 +167,7 @@ void KBI0_IRQHandler(){
 //GYRO_ACCE_TIME			//read gyro&acce every 400us
 //POSITION_TIME				//compute position every 2ms
 //ENCODER_TIME				//read encoder every 5ms
-//SPEED_CONTRO_LTIME		//run speed control every 5ms
+//SPEED_CONTRO_LTIME		//run speed control every 40ms
 //DIR_CONTROL_TIME			//run direction control every 2ms
 //BALANCE_CONTROL_TIME		//run balance control every 2ms
 //OLED_CHANGE_TIME			//update oled display every 20ms
@@ -176,7 +182,7 @@ void PIT_CH0_IRQHandler(void){
 	if(count%GYRO_ACCE_TIME == 0)		{	SET_GYROACCE_FLAG();	}
 	if(count%POSITION_TIME == 0)		{	SET_POSITION_FLAG();	}
 	if(count%ENCODER_TIME == 0)			{	SET_ENCODER_FLAG();		}
-	if(IS_BALANCE_MODE && count%SPEED_CONTRO_LTIME == 0)	{	SET_SPEED_CONTROL();	}
+	if(count%SPEED_CONTRO_LTIME == 0)	{	SET_SPEED_CONTROL();	}
 	if(count%DIR_CONTROL_TIME == 0)		{	SET_DIRECTION_CONTROL();}
 	if(count%BALANCE_CONTROL_TIME == 0)	{	SET_BALANCE_CONTROL();	}
 	if(count%OLED_CHANGE_TIME == 0)		{	SET_DISP_REFRESH();		}

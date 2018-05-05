@@ -9,3 +9,4 @@
 .\objects\pid.o: ..\CORE\core_cmFunc.h
 .\objects\pid.o: ..\CORE\SKEAZ1284.h
 .\objects\pid.o: ..\CORE\system_SKEAZ1284.h
+.\objects\pid.o: D:\Program Files\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

@@ -19,6 +19,7 @@ typedef struct PID {
 	float  lastError; 		// Error[−1]
 	float  prevError; 		// Error[−2]
 	float  sumError; 		// Sums of Errors
+	float  maxSum;			
 	float  lastOutput;		// Control quantity last time
 }PID,*pPID;
 
@@ -29,7 +30,7 @@ typedef struct PID {
 //			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
 //Others: null
 //===========================================================================
-void PIDInit(pPID pidController, float Kp, float Ki, float Kd);
+void PIDInit(pPID pidController, float Kp, float Ki, float Kd, float limit);
 //===========================================================================
 //Function: To compute the control quantity according to a certain PID Controller
 //			and an error value
