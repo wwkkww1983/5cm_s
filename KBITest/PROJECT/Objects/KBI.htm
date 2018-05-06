@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\KBI.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\KBI.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sat May 05 12:50:54 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun May 06 17:11:51 2018
 <BR><P>
 <H3>Maximum Stack Usage =        248 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -383,6 +383,8 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcDuty
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
@@ -409,6 +411,7 @@ Global Symbols
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__mathlib_dbl_infnan2
 <LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcDuty
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 </UL>
 
@@ -422,6 +425,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 </UL>
 
 <P><STRONG><a name="[41]"></a>_dsub</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, daddsub.o(.text), UNUSED)
@@ -500,6 +504,7 @@ Global Symbols
 <P><STRONG><a name="[5e]"></a>__aeabi_f2d</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, f2d.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_PWM_init
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcDuty
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDcalc
@@ -548,6 +553,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
 <LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM1_IRQHandler
 <LI><a href="#[1c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM0_IRQHandler
+<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcDuty
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
@@ -758,7 +764,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 </UL>
 
-<P><STRONG><a name="[23]"></a>KBI0_IRQHandler</STRONG> (Thumb, 1120 bytes, Stack size 40 bytes, balance_isr.o(i.KBI0_IRQHandler))
+<P><STRONG><a name="[23]"></a>KBI0_IRQHandler</STRONG> (Thumb, 1358 bytes, Stack size 40 bytes, balance_isr.o(i.KBI0_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = KBI0_IRQHandler &rArr; __aeabi_ddiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pageSwitch
@@ -1028,15 +1034,16 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 </UL>
 
-<P><STRONG><a name="[9f]"></a>calcDuty</STRONG> (Thumb, 70 bytes, Stack size 16 bytes, motor.o(i.calcDuty))
-<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = calcDuty &rArr; __aeabi_cdrcmple
+<P><STRONG><a name="[9f]"></a>calcDuty</STRONG> (Thumb, 90 bytes, Stack size 24 bytes, motor.o(i.calcDuty))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = calcDuty &rArr; __aeabi_cdrcmple
 </UL>
 <BR>[Calls]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
-<LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cdrcmple
+<LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 </UL>
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -1091,7 +1098,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLEDDisplay
 </UL>
 
-<P><STRONG><a name="[a3]"></a>globalDisplayInit</STRONG> (Thumb, 778 bytes, Stack size 8 bytes, balance.o(i.globalDisplayInit))
+<P><STRONG><a name="[a3]"></a>globalDisplayInit</STRONG> (Thumb, 938 bytes, Stack size 8 bytes, balance.o(i.globalDisplayInit))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = globalDisplayInit &rArr; strcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;strcpy
@@ -1107,19 +1114,23 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a6]"></a>globalKalmanLoop</STRONG> (Thumb, 478 bytes, Stack size 48 bytes, balance.o(i.globalKalmanLoop))
+<P><STRONG><a name="[a6]"></a>globalKalmanLoop</STRONG> (Thumb, 518 bytes, Stack size 48 bytes, balance.o(i.globalKalmanLoop))
 <BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = globalKalmanLoop &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acceSolveData
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acceReadL
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;atan2
+<LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 <LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[6c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
+<LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2iz
 <LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
+<LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GYROReadn
@@ -1324,7 +1335,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KBI0_IRQHandler
 </UL>
 
-<P><STRONG><a name="[38]"></a>main</STRONG> (Thumb, 620 bytes, Stack size 24 bytes, balance.o(i.main))
+<P><STRONG><a name="[38]"></a>main</STRONG> (Thumb, 716 bytes, Stack size 24 bytes, balance.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = main &rArr; globalKalmanLoop &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;acceInit
@@ -1334,6 +1345,7 @@ Global Symbols
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Clear
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pitInit_us
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -1447,7 +1459,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_fadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
-<LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcDuty
 <LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;KALMANFilter
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDcalc
 </UL>
@@ -1486,6 +1497,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_PWM_set_duty
 <LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FTM_PWM_init
 <LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;globalKalmanLoop
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PIDLimit
 <LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speedLeagalize
 </UL>

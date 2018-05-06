@@ -87,7 +87,7 @@ float calcDuty(float speedrpm)
 	static float ret;
 	
 	ret = speedrpm*speedIndex/200;
-	return (ret>1.0)?ret+11:0;
+	return (ret>1.0)?ret+18.0:0;
 }
 
 float speedLeagalize(float duty)

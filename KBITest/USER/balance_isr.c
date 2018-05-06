@@ -121,8 +121,13 @@ void KBI0_IRQHandler(){
 				
 				setGoalRPM[0] = 0.0;
 				setGoalRPM[1] = 0.0;
-				PIDInit(&PID_Speed[0],PID_p/1.0,PID_i/10.0,PID_d/10.0,maxLIM);
-				PIDInit(&PID_Speed[1],PID_p/1.0,PID_i/10.0,PID_d/10.0,maxLIM);
+				
+				PIDInit(&PID_Posi[0],PID_pos_p/1.0,PID_pos_i/10.0,PID_pos_d/10.0,maxLIM);
+				PIDInit(&PID_Posi[1],PID_pos_p/1.0,PID_pos_i/10.0,PID_pos_d/10.0,maxLIM);
+				
+				PIDInit(&PID_Speed[0],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
+				PIDInit(&PID_Speed[1],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
+				
 				globalResetMid();
 				
 				SET_CLEAR_OLED();
@@ -187,7 +192,6 @@ void PIT_CH0_IRQHandler(void){
 	if(count%BALANCE_CONTROL_TIME == 0)	{	SET_BALANCE_CONTROL();	}
 	if(count%OLED_CHANGE_TIME == 0)		{	SET_DISP_REFRESH();		}
 	if(count%2000==0) 					{	globalCount++;			}
-	
 	
 	pit_IRQClearFlag(pit_CH0);
 }

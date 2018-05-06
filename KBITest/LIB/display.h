@@ -14,7 +14,7 @@
 
 #define MIN(X,Y) (X>Y?Y:X)
 
-#define DATANUM 		20		//the number of datas to be displayed
+#define DATANUM 		24		//the number of datas to be displayed
 #define MAXLINE 		8		//the maximum number of lines that can be displayed on a single page
 #define NAMELENGTH		5		//characters limit for argName
 

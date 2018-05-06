@@ -102,12 +102,16 @@ extern float 	sendSpeed[2];		// Speed sent to motor
 extern int_16 	sSpeed[2];			// Display conertion value for sendSpeed
 extern float 	setGoalRPM[2];		// Speed Goal
 
-extern PID 		PID_Speed[2];
-extern int_16 	PID_p;				// 
-extern int_16 	PID_i;				// 
-extern int_16 	PID_d;				// 
-extern int_16 	maxLIM;				// 
+extern PID 		PID_Speed[2],PID_Posi[2];;
 
+extern int_16 PID_spd_p;		// /1
+extern int_16 PID_spd_i;		// /10
+extern int_16 PID_spd_d;		// /10
+extern int_16 PID_pos_p;		// /
+extern int_16 PID_pos_i;		// /
+extern int_16 PID_pos_d;		// /
+
+extern int_16 	maxLIM;				// 
 extern int_16	speedIndex;
 
 

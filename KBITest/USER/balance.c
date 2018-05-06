@@ -55,17 +55,24 @@ int_16 globalCount 		= 0;
 displayItem items[DATANUM];
 float 		GyroMid;
 PID 		PID_Speed[2];
+PID 		PID_Posi[2];
 int_16		delta;
 int_16		GM,KA;
 
-int_16 PID_p 	= 28;		// /1
-int_16 PID_i	= 0;		// /10
-int_16 PID_d	= 10;		// /10
+int_16 PID_pos_p 	= 20;		// /1
+int_16 PID_pos_i	= 0;		// /10
+int_16 PID_pos_d	= 200;		// /10
+
+int_16 PID_spd_p 	= 20;		// /10
+int_16 PID_spd_i	= 0;		// /10
+int_16 PID_spd_d	= 0;		// /10
+
 int_16 speedIndex = 5;		// /200
 int_16 deltaExp = 10;		// *1.0
 int_16 maxLIM = 40;			//
+int_16 spdLimit = 50.0;
 
-#define PID_LIMIT_SPEED		18.0
+int_16 ADCVal_01 = 0, ADCVal_03 = 0;
 
 void globalDisplayInit(void);
 void globalKBIInit(void);
@@ -144,6 +151,10 @@ int main(){
 				}
 			}
 		}
+		if(ADC_READ_FLAG){
+//			ADCVal_01 = ADCReadn(ADC_1,5);
+//			ADCVal_03 = ADCReadn(ADC_3,5);
+		}
 		if(GYRO_ACCE_FLAG){
 			CLR_GYROACCE_FLAG();
 			// Refresh GYRO and ACCE
@@ -156,25 +167,33 @@ int main(){
 //			setGoalRPM[0] = setGoalRPM[1] = fabs(delta*deltaExp*1.0);
 //			sendSpeed[0] = calcDuty(PIDcalc(&PID_Speed[0],setGoalRPM[0],speedRPM[0]));
 //			sendSpeed[1] = calcDuty(PIDcalc(&PID_Speed[1],setGoalRPM[1],speedRPM[1]));
-			sendSpeed[0] = PIDcalc(&PID_Speed[0],GyroMid,KalmanAngle);
-			sendSpeed[1] = PIDcalc(&PID_Speed[1],GyroMid,KalmanAngle);
-			if(sendSpeed[0]>0){
-				setForwDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[0]),PID_LIMIT_SPEED));
-			}else{
-				setReveDuty(MOTOR_1,PIDLimit(calcDuty(-sendSpeed[0]),PID_LIMIT_SPEED)+3.0);
-			}
+			
+			sendSpeed[0] = PIDcalc(&PID_Posi[0],GyroMid,KalmanAngle);
+			sendSpeed[1] = PIDcalc(&PID_Posi[1],GyroMid,KalmanAngle);
+			
+//			if(sendSpeed[1]>0){
+//				setForwDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[1]),spdLimit));
+//				setForwDuty(MOTOR_2,PIDLimit(calcDuty(sendSpeed[1]),spdLimit)+1.0);
+//			}else{
+//				setReveDuty(MOTOR_1,PIDLimit(calcDuty(-sendSpeed[1]),spdLimit)+3.0);
+//				setReveDuty(MOTOR_2,PIDLimit(calcDuty(-sendSpeed[1]),spdLimit)+3.0+1.0);
+//			}
 			
 			if(sendSpeed[1]>0){
-				setForwDuty(MOTOR_2,PIDLimit(calcDuty(sendSpeed[1]),PID_LIMIT_SPEED));
+				sendSpeed[1] = PIDcalc(&PID_Speed[1],sendSpeed[1],speedRPM[1]);
+				setForwDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[1]),spdLimit));
+				setForwDuty(MOTOR_2,PIDLimit(calcDuty(sendSpeed[1]),spdLimit)+1.0);
 			}else{
-				setReveDuty(MOTOR_2,PIDLimit(calcDuty(-sendSpeed[1]),PID_LIMIT_SPEED)+3.0);
+				sendSpeed[1] = PIDcalc(&PID_Speed[1],-sendSpeed[1],speedRPM[1]);
+				setReveDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[1]),spdLimit)+3.0);
+				setReveDuty(MOTOR_2,PIDLimit(calcDuty(sendSpeed[1]),spdLimit)+3.0+1.0);
 			}
 		}
 		if(BALANCE_CONTROL){
 			CLR_BALANCE_CONTROL();
 			// TODO...
-//			setForwDuty(MOTOR_1,PID_d);
-//			setForwDuty(MOTOR_2,PID_d);
+//			setForwDuty(MOTOR_1,PID_i);
+//			setForwDuty(MOTOR_2,PID_i);
 		}
 	}
 }
@@ -224,6 +243,7 @@ void globalKalmanLoop(void)
 		acceAngle = atan2(-xAxisMean,-zAxisMean )*180/PI;
 		angVelocity = gyroMean * 0.2;
 		KalmanAngle = KALMANFilter(angVelocity,acceAngle);
+		if(KalmanAngle>0) KalmanAngle -= 360.0;					////
 	}
 }
 //============================================================================
@@ -284,45 +304,72 @@ void globalDisplayInit(void)
 	items[12].argValue = &KA;
 	items[12].pageNum = DATA0_PAGE;
 	//============================================================================
-	strcpy(items[13].argName,"PID_p");	//
-	items[13].argValue = &PID_p;
-	items[13].delta = 1;
-	items[13].changeable = 1;
-	items[13].pageNum = VARIABLE_PAGE;
-
-	strcpy(items[14].argName,"PID_i");	//
-	items[14].argValue = &PID_i;
-	items[14].delta = 2;
+	strcpy(items[13].argName,"gCUNT");	//
+	items[13].argValue = &globalCount;
+	items[13].pageNum = DATA1_PAGE;
+	
+	// strcpy(items[14].argName,"K_spd");	//
+	// items[14].argValue = &speedIndex;
+	// items[14].delta = 1;
+	// items[14].changeable = 1;
+	// items[14].pageNum = VARIABLE_PAGE;
+	
+	strcpy(items[14].argName,"pPIDp");	//
+	items[14].argValue = &PID_pos_p;
+	items[14].delta = 1;
 	items[14].changeable = 1;
 	items[14].pageNum = VARIABLE_PAGE;
 
-	strcpy(items[15].argName,"PID_d");	//
-	items[15].argValue = &PID_d;
-	items[15].delta = 2;
+	strcpy(items[15].argName,"pPIDi");	//
+	items[15].argValue = &PID_pos_i;
+	items[15].delta = 1;
 	items[15].changeable = 1;
 	items[15].pageNum = VARIABLE_PAGE;
-	
-	strcpy(items[16].argName,"gCUNT");	//
-	items[16].argValue = &globalCount;
-	items[16].pageNum = DATA1_PAGE;
-	
-	strcpy(items[17].argName,"K_spd");	//
-	items[17].argValue = &speedIndex;
+
+	strcpy(items[16].argName,"pPIDd");	//
+	items[16].argValue = &PID_pos_d;
+	items[16].delta = 4;
+	items[16].changeable = 1;
+	items[16].pageNum = VARIABLE_PAGE;
+
+	strcpy(items[17].argName,"sPIDp");	//
+	items[17].argValue = &PID_spd_p;
 	items[17].delta = 1;
 	items[17].changeable = 1;
 	items[17].pageNum = VARIABLE_PAGE;
-	
-	strcpy(items[18].argName,"E_del");	//
-	items[18].argValue = &deltaExp;
-	items[18].delta = 1;
+
+	strcpy(items[18].argName,"sPIDi");	//
+	items[18].argValue = &PID_spd_i;
+	items[18].delta = 2;
 	items[18].changeable = 1;
 	items[18].pageNum = VARIABLE_PAGE;
-	
-	strcpy(items[19].argName,"I_max");	//
-	items[19].argValue = &maxLIM;
-	items[19].delta = 1;
+
+	strcpy(items[19].argName,"sPIDd");	//
+	items[19].argValue = &PID_spd_d;
+	items[19].delta = 2;
 	items[19].changeable = 1;
 	items[19].pageNum = VARIABLE_PAGE;
+
+	strcpy(items[20].argName,"K_spd");	//
+	items[20].argValue = &speedIndex;
+	items[20].delta = 1;
+	items[20].changeable = 1;
+	items[20].pageNum = VARIABLE_PAGE;
+	
+	strcpy(items[21].argName,"spdLM");	//
+	items[21].argValue = &spdLimit;
+	items[21].delta = 1;
+	items[21].changeable = 1;
+	items[21].pageNum = VARIABLE_PAGE;
+
+	
+	strcpy(items[22].argName,"ADC01");	//
+	items[22].argValue = &ADCVal_01;
+	items[22].pageNum = DATA1_PAGE;
+	
+	strcpy(items[23].argName,"ADC03");	//
+	items[23].argValue = &ADCVal_03;
+	items[23].pageNum = DATA1_PAGE;
 }
 //============================================================================
 //============================================================================
