@@ -13,7 +13,6 @@ const FTM_MemMapPtr FTM_ARR[]={FTM0_BASE_PTR,FTM1_BASE_PTR,FTM2_BASE_PTR};
 
 static uint_16 MOD_VALUE;
 
-
 //============================================================================
 //函数名称：FTM_PWM_init
 //函数返回：无

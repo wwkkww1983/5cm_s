@@ -8,7 +8,6 @@
 //===========================================================================
 #include "GYRO.h"
 
-uint_16	gyroMid;
 
 //===========================================================================
 //Function: To initialize the Gyroscope module
@@ -81,14 +80,14 @@ uint_16 GYROReadn(uint_8 channel,uint_8 N){
 //Arguements: gyroValue: the primitive value read from the gyroscope
 //Others: null
 //===========================================================================
-float GYROSolve(uint_16 gyroValue){
+/*float GYROSolve(uint_16 gyroValue){
 	float angleVelocity;
 	uint_16 realGyro;
 	
 	realGyro = gyroValue - gyroMid;
 	angleVelocity = realGyro*GYRORATIO;
 	return angleVelocity;
-}
+}*/
 
 //===========================================================================
 //Function: To Read the initial gyroscope value as mid-value
@@ -97,6 +96,7 @@ float GYROSolve(uint_16 gyroValue){
 //Others: call GYROReadn() at the beginning of the programme
 //===========================================================================
 uint_16 getGyroMid(uint_8 channel){
+		uint_16	gyroMid;
 		gyroMid = GYROReadn(channel,10);
 	  return gyroMid;
 }

@@ -50,7 +50,7 @@ void KBIInit(uint_16 KBIPort, uint_8 edge, uint_8 pullSelect){
             //Clear KBIx_SP field
             KBI0_SC |= KBI_SC_RSTKBSP_MASK;
             //Enable interrupt
-            NVIC_EnableIRQ(KBI0_IRQ_NO);
+            NVIC_EnableIRQ(KBI0_IRQn);
             KBI0_SC |= KBI_SC_KBIE_MASK;
             break;
 
@@ -81,7 +81,7 @@ void KBIInit(uint_16 KBIPort, uint_8 edge, uint_8 pullSelect){
             //Clear KBIx_SP field
             KBI1_SC |= KBI_SC_RSTKBSP_MASK;
             //Enable interrupt
-            NVIC_EnableIRQ(KBI1_IRQ_NO);
+            NVIC_EnableIRQ(KBI1_IRQn);
             KBI1_SC |= KBI_SC_KBIE_MASK;
             break;
 
@@ -128,4 +128,5 @@ uint_8 isKBIFlagSet(uint_16 KBINum){
 		case 1://KBI_1
 		    return KBI_SC_KBF_MASK & KBI1_SC;
 	}
+	return 0;
 }

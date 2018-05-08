@@ -10,7 +10,9 @@
       <TargetName>Target 1</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pArmCC>5060528::V5.06 update 5 (build 528)::ARMCC</pArmCC>
       <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>SKEAZ128xxx4</Device>
@@ -330,11 +332,12 @@
             <vShortWch>1</vShortWch>
             <v6Lto>0</v6Lto>
             <v6WtE>0</v6WtE>
+            <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\DRIVER;..\LIB</IncludePath>
+              <IncludePath>..\CORE;..\DRIVER;..\LIB;..\USER;..\USER\test</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -418,6 +421,16 @@
               <FileType>1</FileType>
               <FilePath>..\DRIVER\ADC.c</FilePath>
             </File>
+            <File>
+              <FileName>pwm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\pwm.c</FilePath>
+            </File>
+            <File>
+              <FileName>incap.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\DRIVER\incap.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -454,24 +467,50 @@
               <FilePath>..\LIB\GYRO.c</FilePath>
             </File>
             <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\PID.c</FilePath>
+            </File>
+            <File>
               <FileName>balanceControl.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\balanceControl.c</FilePath>
             </File>
+            <File>
+              <FileName>encoder.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\encoder.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\motor.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>user</GroupName>
+          <GroupName>test</GroupName>
           <Files>
             <File>
-              <FileName>main.c</FileName>
+              <FileName>balance.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\USER\main.c</FilePath>
+              <FilePath>..\USER\balance.c</FilePath>
+            </File>
+            <File>
+              <FileName>balance_isr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\USER\balance_isr.c</FilePath>
             </File>
           </Files>
         </Group>
       </Groups>
     </Target>
   </Targets>
+
+  <RTE>
+    <apis/>
+    <components/>
+    <files/>
+  </RTE>
 
 </Project>

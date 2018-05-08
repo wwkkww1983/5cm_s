@@ -19,6 +19,14 @@
 #define encoder1IRQ FTM0_IRQHandler
 #define encoder2IRQ FTM1_IRQHandler
 
+// Encoder pulses in a circle
+#define encoder1CirclePulse		512
+#define encoder2CirclePulse		512
+
+// D(irection) phase value port, high for ClockWise and low the reverse
+#define directionPort1			PORTA|(0)
+#define directionPort2			PORTC|(4)
+
 //==========================================================================
 //Function: To initialize a encoder with two PWM ports
 //Return: Null

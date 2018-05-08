@@ -94,6 +94,27 @@
 #define KBI0_IRQ_NO 24
 #define KBI1_IRQ_NO 25
 
+/*KBI DIFINITIONS*/
+/* KBI0 */
+#define	kbi_PTA(x)			(((uint_32)1<<(x))<<0)
+#define	kbi_PTB(x)			(((uint_32)1<<(x))<<8)
+#define	kbi_PTC(x)			(((uint_32)1<<(x))<<16)
+#define	kbi_PTD(x)			(((uint_32)1<<(x))<<24)
+/* KBI1 */
+#define	kbi_PTE(x)			(((uint_32)1<<(x))<<0)
+#define	kbi_PTF(x)			(((uint_32)1<<(x))<<8)
+#define	kbi_PTG(x)			(((uint_32)1<<(x))<<16)
+#define	kbi_PTH(x)			(((uint_32)1<<(x))<<24)
+/*KBI On-board presses */
+#define kbi_Press1			kbi_PTC(7)
+#define kbi_Press2			kbi_PTA(3)
+#define kbi_Press3			kbi_PTD(3)
+#define kbi_Press4			kbi_PTC(6)	
+#define kbi_Press5			kbi_PTA(2)
+#define kbi_Press6			kbi_PTD(4)
+#define kbi0_Low(port)		KBI0_ES &= ~(port)
+#define kbi0_High(port)		KBI0_ES |= (port)
+
 //===========================================================================
 //Function: To initialize KBI module and select the approprite edge as well
 //          as whether you are going to use pullup resistor

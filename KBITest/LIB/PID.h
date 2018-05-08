@@ -11,17 +11,26 @@
 
 #include "common.h"
 
-typedef struct PID{
-	int_16  target;			// 设定目标 Desired value
-	int_16  proportion; 	// 比例常数 Proportional Const
-	int_16  integral;		// 积分常数 Integral Const
-	int_16  derivative;		// 微分常数 Derivative Const
-	int_16  lastError; 		// Error[−1]
-	int_16  prevError; 		// Error[−2]
-	int_16  sumError; 		// Sums of Errors
-	int_16  lastOutput;		// Control quantity last time
+typedef struct PID {
+	float  target;			// 设定目标 Desired value
+	float  proportion; 		// 比例常数 Proportional Const
+	float  integral;		// 积分常数 Integral Const
+	float  derivative;		// 微分常数 Derivative Const
+	float  lastError; 		// Error[−1]
+	float  prevError; 		// Error[−2]
+	float  sumError; 		// Sums of Errors
+	float  maxSum;			
+	float  lastOutput;		// Control quantity last time
 }PID,*pPID;
 
+//===========================================================================
+//Function: Initialize PID structure parameters.
+//Return: null
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  Kp,Ki,Kd:   	 p,i,d parameters for PID structure
+//Others: null
+//===========================================================================
+void PIDInit(pPID pidController, float Kp, float Ki, float Kd, float limit);
 //===========================================================================
 //Function: To compute the control quantity according to a certain PID Controller
 //			and an error value
@@ -30,6 +39,16 @@ typedef struct PID{
 //			  thisError:   	 the most lately computed error
 //Others: null
 //===========================================================================
-int PIDController(pPID pidController, int_16 thisError);
+//int PIDController(pPID pidController, float thisError);
+//===========================================================================
+//Function: To compute the control quantity according to a certain PID Controller
+//			and an error value
+//Return: returns control quantity
+//Arguements: pidController: a certain PID Controller(a pointer) with parameters set
+//			  gloal:   	 target value
+//			  thisVal:   current value
+//Others: null
+//===========================================================================
+float PIDcalc(pPID pidController, float gloal, float thisVal);
 
 #endif

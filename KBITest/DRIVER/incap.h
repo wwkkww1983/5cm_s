@@ -22,15 +22,17 @@
 #define CHANNEL0 0
 #define CHANNEL1 1
 
+//输入捕获时钟频率
+#define INCAP_CLOCK		375000
 
 //------------------------------FTM0通道和引脚选择----------------------
 //注：通过展开以下宏定义并修改宏定义值可选择通道号和引脚
 
 //FTM0通道0引脚组: 1=PTA0脚，2=PTB2脚
-#define FTM0_CHANNEL0_GROUP 1    
+//#define FTM0_CHANNEL0_GROUP 1
 
 //FTM0通道1引脚组: 1=PTA1脚，2=PTB3脚
-//#define FTM0_CHANNEL1_GROUP 1
+#define FTM0_CHANNEL1_GROUP 1
 //----------------------------------------------------------------------
 
 
@@ -38,7 +40,7 @@
 //注：通过展开以下宏定义并修改宏定义值可选择通道号和引脚
 
 //FTM1通道0引脚组: 1=PTC4脚，2=PTH2脚
-#define FTM1_CHANNEL0_GROUP 1
+//#define FTM1_CHANNEL0_GROUP 1
 
 //FTM1通道1引脚组: 1=PTC5脚, 2=PTE7脚
 #define FTM1_CHANNEL1_GROUP 1

@@ -4,12 +4,24 @@
 //版权所有：同济大学Tu_smart智能车队
 //版本更新：2018-03-20  V1.0
 //芯片类型：KEAZ128
-//作者：莫庸
+//作者：	莫庸
+//修改：YTom
 //===========================================================================
 #include "display.h"
 
-uint_8 page, line, flag = 1;
-char spaces[] = "                   ";
+uint_8 focusLine=0, currPage=0, flag=0;
+uint_8 dispLines[8] = {0xff};			//Current items for displaying
+char spaces[] = "                 ";
+
+/*DISPLAY FLAGS: 'change flag','add flag','subtract flag'*/
+#define IS_OLED_ADD				((flag)&(0x01))
+#define SET_ADD_FLAG()			((flag)|=(0x01))
+#define CLR_ADD_FLAG()			((flag)&=(~0x01))
+
+#define IS_OLED_SUBTRACT		((flag)&(0x02))
+#define SET_SUBTRACT_FLAG()		((flag)|=(0x02))
+#define CLR_SUBTRACT_FLAG()		((flag)&=(~0x02))
+
 //===========================================================================
 //Function: To display all the items on the OLED screen
 //Return: null
@@ -18,83 +30,64 @@ char spaces[] = "                   ";
 //Others: null
 //===========================================================================
 void OLEDDisplay(pdisplayItem items){
-	//refer to pages displaying datas read from sensors and are always changing
-	if(page<=SENSOR_PAGE) SET_CHANGE_FLAG();
-	//detect add or subtract action
+	static uint_8 index,row;
+	//Add or sub value
 	if(IS_OLED_ADD){
-		SET_CHANGE_FLAG();
-		*(items[line+page*4].argValue) += items[line+page*4].delta;
 		CLR_ADD_FLAG();
-	}
-	if(IS_OLED_SUBTRACT){
-		SET_CHANGE_FLAG();
-		*(items[line+page*4].argValue) -= items[line+page*4].delta;
+		*(items[dispLines[focusLine]].argValue) += items[dispLines[focusLine]].delta;
+	}else if(IS_OLED_SUBTRACT){
 		CLR_SUBTRACT_FLAG();
+		*(items[dispLines[focusLine]].argValue) -= items[dispLines[focusLine]].delta;
 	}
-
-	//detect whether the screen datas have be updated
-	if(IS_OLED_CHANGED){
-		CLR_CHANGE_FLAG();
-		uint_8 index;
-		//OLED_Clear();
-
-		for(index=0; (index<MAXLINE); index++){
-			if((index+MAXLINE*page)>=DATANUM){
-			OLED_ShowString(0,2*index, spaces);	
+	row = 0;
+	for(index=0; (index<DATANUM); index++){
+		if(items[index].pageNum == currPage){
+			dispLines[row] = index;
+			//display argument name
+			items[index].argName[NAMELENGTH] = '\0';
+			OLED_ShowString(0,row, items[index].argName);
+			//display focused line of changeable value with sign '*'
+			if(row==focusLine && items[index].changeable){
+				OLED_ShowChar(48,row,'*');
 			}else{
-				OLED_ShowString(0,2*index, items[index+MAXLINE*page].argName);
-				//display '*'
-				if(index==line)		OLED_ShowChar(56,2*index,'*');
-				else 							OLED_ShowChar(56,2*index,' ');
-			
-				dis_num(0,2*index, *(items[index+MAXLINE*page].argValue));
+				OLED_ShowChar(48,row,' ');
 			}
+			//display number
+			dis_num(0,row, (int)(*(items[index].argValue)));
+			row++;
 		}
+		if(row==MAXLINE) break;
+	}
+	while(row<MAXLINE){
+		dispLines[row] = 0xff;
+		OLED_ShowString(0,row, spaces);
+		row++;
 	}
 }
-
 //===========================================================================
 //Function: To deal with global arguement 'page'
 //Return: null
 //Arguements: null
 //Others: null
 //===========================================================================
-void pageUp(void){
+void pageSwitch(void){
 	//if this is already the last page, return to the first page
-	if(page==((DATANUM-1)/MAXLINE)) page = 0;
-	else page++;
-	line = 0;
-	SET_CHANGE_FLAG()	;
+	currPage = (currPage+1)%PAGE_COUNT;
+	focusLine = 0;
 }
-
-void pageDown(void){
-	//if this is the first page, reverse to the last page
-	if(page==0) page = (DATANUM-1)/MAXLINE;
-	else page--;
-	line = 0;
-	SET_CHANGE_FLAG()	;
-}
-
 //===========================================================================
 //Function: To deal with global arguement 'line'
 //Return: null
 //Arguements: null
 //Others: null
 //===========================================================================
-void lineUp(void){
-	//If this is the last line of the screen, return to the first line
-	if(line==MIN(MAXLINE-1,DATANUM-4*page-1)) line = 0;
-	else line++;
-	SET_CHANGE_FLAG();
+void lineSwitch(void){
+	//If this is the last line of the page lines, return to the first line
+	focusLine++;
+	if(focusLine==MAXLINE || dispLines[focusLine]==0xff){
+		focusLine = 0;
+	}
 }
-
-void lineDown(void){
-	//If this is the first line of the screen, reverse to the last line
-	if(line==0) line = MIN(MAXLINE-1,DATANUM-4*page-1);
-	else line--;
-	SET_CHANGE_FLAG()	;
-}
-
 //===========================================================================
 //Function: To increse/decrese a data assigned by page and line 
 //Return: null

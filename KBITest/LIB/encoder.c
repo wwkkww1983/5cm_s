@@ -21,8 +21,8 @@ void initEncoder(uint_8 encoderNum){
 	switch(encoderNum){
 		case ENCODER_1:
 			INCaptureInit(FTM_0,CHANNEL1);
-			//configurate PTA0 as GPIO port
-			gpio_init(PORTA|(0),GPIO_IN,0);
+			//configurate PTxx as GPIO port
+			gpio_init(directionPort1,GPIO_IN,0);
 			//Clear interrupt flag
 			FTM0_C1SC &= ~FTM_CnSC_CHF_MASK;
 			//enable interrupt
@@ -30,8 +30,8 @@ void initEncoder(uint_8 encoderNum){
 			break;
 		case ENCODER_2:
 			INCaptureInit(FTM_1,CHANNEL1);
-			//configurate PTA1 as GPIO port
-			gpio_init(PORTC|(4),GPIO_IN,0);
+			//configurate PTxx as GPIO port
+			gpio_init(directionPort2,GPIO_IN,0);
 			//Clear interrupt flag
 			FTM1_C1SC &= ~FTM_CnSC_CHF_MASK;
 			//enable interrupt
@@ -71,22 +71,19 @@ void EncoderClrFlag(uint_8 encoderNum){
 //        the average frequency of the PWM signal
 //==========================================================================
 int_16 EncoderRead(uint_8 encoderNum){
-	uint_8 direction;
 	uint_16 count;
 	switch(encoderNum){
 		case ENCODER_1:
 			count = FTM0_C1V;
-			direction = gpio_get(PORTA|(0));
-			break;
+//			if(gpio_get(directionPort1)) return -count;
+//			else return count;
 		case ENCODER_2:
 			count = FTM1_C1V;
-			direction = gpio_get(PORTC|(4));
-			break;
+//			if(gpio_get(directionPort2)) return count;
+//			else return -count;
 		default:
 			break;
 	}
-	//if(direction) return count;
-	//if(!direction) return -count;
 	return count;
 }
 
@@ -101,12 +98,12 @@ uint_8 isEncoderFlagSet(uint_8 encoderNum){
 	switch(encoderNum){
 		case ENCODER_1:
 			return ((FTM0_C1SC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK);
-			break;
+//			break;
 		case ENCODER_2:
 			return ((FTM1_C1SC & FTM_CnSC_CHF_MASK) == FTM_CnSC_CHF_MASK);
-			break;
+//			break;
 		default:
 			return 0;
-			break;
+//			break;
 	}
 }
