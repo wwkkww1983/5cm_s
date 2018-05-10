@@ -75,3 +75,10 @@
 + Prof Wong 发现，我们的程序将调节目标值错误地储存在了陀螺仪中值（gyroMid）中，使得卡尔曼滤波值与实际角度相差约17度。
 + 将与 gyroMid 相关的程序修改，并调节了 PID 值之后，小车原有的拍地和抖动现象均有减轻，在运行起始阶段可以比较平稳地运动一段时间，之后的情况依然不理想。
 + 当前 PID_pos_p = 10, PID_pos_i = 0, PID_pos_d = 0, PID_spd_p = 14, PID_spd_i = 6, PID_spd_d = 0.
+
+## 2018-05-09
+> Recorder: My
++ Prof Wong 发现PID控制算法中，算出的值应当是速度的变化量，而不是速度的当前值。
++ 家什搬到了二楼。
++ 目前的车能在平衡位置左右晃一会，但是稍微偏转大一点就救不回来。
++ 当前 PID_pos_p = 12, PID_pos_i = 0, PID_pos_d = 44, PID_spd_p = 15, PID_spd_i = 0, PID_spd_d = 0.
