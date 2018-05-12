@@ -45,6 +45,7 @@ int_16 acceValue[3] 	= {0};
 int_16 gyroValue[5], xAxis[5], zAxis[5], angVelocity, xAxisMean, zAxisMean, gyroMean;
 int_16 acceAngle, gyroAngle;
 float KalmanAngle;
+float TargetAngle;
 int_16 sSpeed[2] 		= {0,0};			
 float  sendSpeed[2] 	= {0.f,0.f};
 float  setGoalRPM[2] 	= {0.f,0.f};		// Speed Goal
@@ -59,11 +60,11 @@ PID 		PID_Posi[2];
 int_16		delta;
 int_16		GM,KA;
 
-int_16 PID_pos_p 	= 20;		// /1
+int_16 PID_pos_p 	= 12;		// /1
 int_16 PID_pos_i	= 0;		// /10
-int_16 PID_pos_d	= 200;		// /10
+int_16 PID_pos_d	= 44;		// /10
 
-int_16 PID_spd_p 	= 20;		// /10
+int_16 PID_spd_p 	= 15;		// /10
 int_16 PID_spd_i	= 0;		// /10
 int_16 PID_spd_d	= 0;		// /10
 
@@ -106,9 +107,9 @@ int main(){
 //	acceReadL(MMA_ADDR, 0x01, 6, rawAcce);
 //	acceSolveData(MMA_12bit_Mode, rawAcce, acceValue);
 //	gyroAngle = atan2(-acceValue[0],-acceValue[2])*180/PI;
-//	GyroMid = getGyroMid(VO1);
+	GyroMid = getGyroMid(VO1);
 
-	GyroMid = 0;
+//	GyroMid = 0;
 	
 	// For test
 //	setGoalRPM[0] = 400.0;
@@ -168,8 +169,8 @@ int main(){
 //			sendSpeed[0] = calcDuty(PIDcalc(&PID_Speed[0],setGoalRPM[0],speedRPM[0]));
 //			sendSpeed[1] = calcDuty(PIDcalc(&PID_Speed[1],setGoalRPM[1],speedRPM[1]));
 			
-			sendSpeed[0] = PIDcalc(&PID_Posi[0],GyroMid,KalmanAngle);
-			sendSpeed[1] = PIDcalc(&PID_Posi[1],GyroMid,KalmanAngle);
+			sendSpeed[0] = PIDcalc(&PID_Posi[0],TargetAngle,KalmanAngle);
+			sendSpeed[1] = PIDcalc(&PID_Posi[1],TargetAngle,KalmanAngle);
 			
 //			if(sendSpeed[1]>0){
 //				setForwDuty(MOTOR_1,PIDLimit(calcDuty(sendSpeed[1]),spdLimit));
@@ -207,7 +208,7 @@ float PIDLimit(float value, float limit)
 //============================================================================
 void globalResetMid(void)
 {
-	GyroMid = KalmanAngle;
+	TargetAngle = KalmanAngle;
 }
 
 //============================================================================
