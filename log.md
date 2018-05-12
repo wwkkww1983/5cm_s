@@ -120,7 +120,7 @@
   -电池没电会影响陀螺仪的读数准确性
   
 + 备注
-  -关于Gyromid的程序修改记录
+  - 关于Gyromid的程序修改记录
 remove the "//" of get gyromid
 add "//" to  gyromid = 0
 
