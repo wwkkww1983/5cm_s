@@ -98,3 +98,33 @@
 + 光编已找到
 + 前瞻板除部分电容缺货已基本焊好
 + git上需要补充“project.h”
+
+## 2018-05-12
+> Recorder: 严汉三
++ 待解决问题
+  -给电机占空比后卡尔曼滤波波动变得很大                   wong
+
++ 程序优化
+  -对卡尔曼滤波值求取mean来优化程序，                    Wong 
+  -选择正确的陀螺仪输出通道，对原有错误程序进行更改        wong
+  -解决滤波角突变问题                                   wong
+  -修改程序中关于Gyromid的错误（详细见备注）                          yan and wang
+  
++ 硬件安装
+  -光编安装及性能检测                                   yan and yang
+
++场地实操
+  -回到smooth状态：经过上述程序优化中部分修改（yan and yang部分）之后，小车初步能smooth站立3秒钟左右，PID参数参考之前参数。        yan and yang
+ 
++经验
+  -电池没电会影响陀螺仪的读数准确性
+  
++备注
+  -关于Gyromid的程序修改记录
+remove the "//" of get gyromid
+add "//" to  gyromid = 0
+
+```cpp
+sendSpeed[0] = PIDcalc(&PID_Posi[0],GyroMid,KalmanAngle); // GyroMid should be replaced by TargetAngle
+```
+TargetAngle should be defined first and should be give the value of the original value of KalmanAngle
