@@ -17,3 +17,15 @@
 + 每天需有一人完成当天的工作日志并commit
 
 _copyright: 同济大学Tu_smart智能车队版权所有_
+
+## Record of this modification
+
+remove the "//" of get gyromid
+
+add "//" to  gyromid = 0
+
+```cpp
+sendSpeed[0] = PIDcalc(&PID_Posi[0],GyroMid,KalmanAngle); // GyroMid should be replaced by TargetAngle
+```
+TargetAngle should be defined first and should be give the value of the original value of KalmanAngle
+
