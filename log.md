@@ -106,18 +106,18 @@
 + 程序
   - 对卡尔曼滤波值求取mean来优化程序//Wong 
   - 选择正确的陀螺仪输出通道，对原有错误程序进行更改//wong
-  - 解决滤波角突变问题//wong
-  - 修改程序中关于Gyromid的错误（详细见备注）//yan and wang
+  - 解决滤波角突变问题//wong
+  - 修改程序中关于Gyromid的错误（详细见备注）//yan and wang
 + 硬件
-  - 光编安装及性能检测//yan and yang
-  - 焊制前瞻板及初步测试//方继冲
-  - 开始新主板PCB的设计//梁厶予
+  - 光编安装及性能检测//yan and yang
+  - 焊制前瞻板及初步测试//方继冲
+  - 开始新主板PCB的设计//梁厶予
 + 场地实操
-  -回到smooth状态：经过上述程序优化中部分修改（yan and yang部分）之后，小车初步能smooth站立3秒钟左右，PID参数参考之前参数。//yan and yang
+  - 回到smooth状态：经过上述程序优化中部分修改（yan and yang部分）之后，小车初步能smooth站立3秒钟左右，PID参数参考之前参数。//yan and yang
 + 经验
   - 电池没电会影响陀螺仪的读数准确性 
 + 备注
-  - 关于Gyromid的程序修改记录
+  - 关于Gyromid的程序修改记录
 remove the "//" of get gyromid
 add "//" to  gyromid = 0
 ```cpp
