@@ -124,3 +124,15 @@ add "//" to  gyromid = 0
 sendSpeed[0] = PIDcalc(&PID_Posi[0],GyroMid,KalmanAngle); // GyroMid should be replaced by TargetAngle
 ```
 TargetAngle should be defined first and should be give the value of the original value of KalmanAngle
+
+## 2018-05-13
+> Recorder: Wong
++ 先写写上午做了啥，因为下午晚上可能不来了.....
++ 完成了最小核心板的主板的原理图，还需要梁厶予再校验一下
++ 在昨天川哥和晨曦程序的基础上进行修改，(我是觉得改的结果和我前几天的程序差不多，但是这般程序显示屏也不画了，滤波也稳了，整个车都牛逼了很多)，放在了`更丝滑的程序`这个文件里面。此外还做了些小的修改，就不写出来了(我也忘了)
++ 注意事项的话，开机后记得看看陀螺仪角速度值是否准确，就是在静止状况下其值是否<5，比较大的话原因可能是开机的时候受到了振动，所以读到了一个角速度，静止重新开电源就行了。
++ 今天还要大家完成事情：
+  - 前排电感的安装与测试
+  - 电感安装好后测试莫庸写好的getX()这个程序，并且将值显示在显示屏上。这个过程之前可能需要标定一下各个电感，调节滑动变阻器，使他们在相同点读值相同
+  - 继续调试平衡的pid参数
+  大家各自对号入座找自己的任务吧
