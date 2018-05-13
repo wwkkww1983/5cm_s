@@ -136,3 +136,8 @@ TargetAngle should be defined first and should be give the value of the original
   - 电感安装好后测试莫庸写好的getX()这个程序，并且将值显示在显示屏上。这个过程之前可能需要标定一下各个电感，调节滑动变阻器，使他们在相同点读值相同
   - 继续调试平衡的pid参数
   大家各自对号入座找自己的任务吧
+
+> Recorder: Mycroft
++ 小车现在可以保持直立了，当前 PID_pos_p = 11, PID_pos_i = 0, PID_pos_d = 480, PID_spd_p = 15, PID_spd_i = 0, PID_spd_d = 0.
++ 新前瞻板测试完毕，应该可以使用。
++ 前排电感安装完毕，但是还没和前瞻板进行连线测试。
