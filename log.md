@@ -143,6 +143,7 @@ TargetAngle should be defined first and should be give the value of the original
 + 前排电感安装完毕，但是还没和前瞻板进行连线测试。
 
 ## 2018-05-14
+> Recorder: 严汉三
 + 小车前部电感/电容正在安装ing：电感接线焊接完毕-方继冲
 + 新PCB前瞻板设计ing-梁厶予
 + 速度环PID和角度平衡环PID构思：目前准备通过给车一个向前偏的倾角来控制速度-汪绪衡
