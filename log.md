@@ -141,3 +141,8 @@ TargetAngle should be defined first and should be give the value of the original
 + 小车现在可以保持直立了，当前 PID_pos_p = 11, PID_pos_i = 0, PID_pos_d = 480, PID_spd_p = 15, PID_spd_i = 0, PID_spd_d = 0.
 + 新前瞻板测试完毕，应该可以使用。
 + 前排电感安装完毕，但是还没和前瞻板进行连线测试。
+
+## 2018-05-14
++ 小车前部电感/电容正在安装ing：电感接线焊接完毕-方继冲
++ 新PCB前瞻板设计ing-梁厶予
++ 速度环PID和角度平衡环PID构思：目前准备通过给车一个向前偏的倾角来控制速度-汪绪衡
