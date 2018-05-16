@@ -152,3 +152,4 @@ TargetAngle should be defined first and should be give the value of the original
 > Recorder: YangCX
 + 已成功读取电感值。显示电感值和计算偏差X都进行了一半。
 + 速度环控制已整合进程序但调试失败，进入行驶模式后电机快速转动并瞬间停车。顺手解决了原更丝滑的程序电机反转函数传入参数错误导致无法反转的bug。方向环写了算法，还未整合进程序。
++ 发现十根连接电感的线中的一根被卷进了车轮里，同志们再焊一根吧。线路复杂，布线的耐操性还有待提高。
