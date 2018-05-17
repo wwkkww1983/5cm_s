@@ -24,6 +24,7 @@
 #include "PID.h"
 #include "includes.h"
 #include "math.h"
+#include "distance.h"
 
 /*flags of some peripherals to detect whether they are to be operated*/
 #define ADC_READ_FLAG			(peripheralRun&(0x01))		// No use
@@ -114,6 +115,8 @@ extern int_16 PID_pos_d;		// /
 extern int_16 	maxLIM;				// 
 extern int_16	speedIndex;
 
+//ADC GetX
+extern int_16 x;
 
 extern int_16 globalCount;
 
