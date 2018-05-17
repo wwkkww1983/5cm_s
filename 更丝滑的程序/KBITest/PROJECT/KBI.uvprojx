@@ -486,6 +486,11 @@
               <FileType>1</FileType>
               <FilePath>..\LIB\motor.c</FilePath>
             </File>
+            <File>
+              <FileName>distance.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\distance.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

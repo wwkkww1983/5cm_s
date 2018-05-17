@@ -1,0 +1,12 @@
+.\objects\distance.o: ..\LIB\distance.c
+.\objects\distance.o: ..\DRIVER\ADC.h
+.\objects\distance.o: ..\LIB\common.h
+.\objects\distance.o: ..\CORE\SKEAZ1284.h
+.\objects\distance.o: F:\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\distance.o: ..\CORE\core_cm0plus.h
+.\objects\distance.o: ..\CORE\core_cmInstr.h
+.\objects\distance.o: ..\CORE\SKEAZ1284.h
+.\objects\distance.o: ..\CORE\core_cmFunc.h
+.\objects\distance.o: ..\CORE\SKEAZ1284.h
+.\objects\distance.o: ..\CORE\system_SKEAZ1284.h
+.\objects\distance.o: ..\LIB\distance.h

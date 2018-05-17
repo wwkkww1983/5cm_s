@@ -20,6 +20,10 @@
 #define ADC_5 10
 #define ADC_6 9
 #define ADC_7 15
+#define ADC_8 15
+#define ADC_9 15
+#define ADC_10 15
+
 
 //===========================================================================
 //Function: To initialize the ADC module
