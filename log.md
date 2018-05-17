@@ -158,3 +158,10 @@ TargetAngle should be defined first and should be give the value of the original
 ## 2018-05-16
 > Recorder: MY
 + 电感的线已经焊好，获得车在赛道上位置的函数GetX()可以得到值。发现前瞻板上滑动变阻器对读到的电压最大值影响几乎没有，没能标定各个电感的值。
+
+## 2018-05-17
+> Recorder: lsy
++ 经测试发现前瞻板正常，昨日出现的问题可能是因为扭的电位器和所测AD口没有对应。但未进行标定
++ 小车走线杂乱易松动，待解决
++ 汪更新了丝滑板程序
++ 杨严二人来实验室研究速度环
