@@ -166,3 +166,12 @@ TargetAngle should be defined first and should be give the value of the original
 + 小车走线杂乱易松动，待解决
 + 汪更新了丝滑板程序
 + 杨严二人来实验室研究速度环。注意跑车前接好前瞻板。逮了切换行驶模式处程序flag被注释的bug。行驶模式只开平衡环时还没问题，速度环还要调。
+
+## 2018-05-18
+> Recorder: undefined
++ 基地切换至二楼。研究了气球打气筒的工作原理。
++ 新增通过改变目标角度实现速度环的方案，与原方案并行调试。在行驶模式显示当前占空比、光编读取的转速，试图找出真相，将速度环调整到正确运行。
+
+## 2018-05-19
+> Recorder: undefined
++ 据说光编读数有问题。
