@@ -24,6 +24,7 @@ float speedRPM[2] 	= {0,0};
 #define SPEED_INDEX		14648.4f
 #define LOOP_PULSE		1536
 int avg = 0;
+
 void FTM0_IRQHandler(){
 	static uint_16 results[10]={0};
 	static uint_8 index = 0;
@@ -67,8 +68,8 @@ void FTM1_IRQHandler(){
 				avg+=results[i+5]-results[i];
 			}
 			avg=avg/25;
-			speedRPM[0] = SPEED_INDEX/avg; // Speed in rpm
-			frequency[1]=(int16_t)speedRPM[0];
+			speedRPM[1] = SPEED_INDEX/avg; // Speed in rpm
+			frequency[1]=(int16_t)speedRPM[1];
 		}
 		EncoderClrFlag(ENCODER_2);
 	}
@@ -122,8 +123,8 @@ void KBI0_IRQHandler(){
 				setGoalRPM[0] = 0.0;
 				setGoalRPM[1] = 0.0;
 				
-				PIDInit(&PID_Posi[0],PID_pos_p/1.0,PID_pos_i/10.0,PID_pos_d/10.0,maxLIM);
-				PIDInit(&PID_Posi[1],PID_pos_p/1.0,PID_pos_i/10.0,PID_pos_d/10.0,maxLIM);
+				PIDInit(&PID_Posi[0],PID_pos_p/10.0,PID_pos_i/10.0,PID_pos_d/100.0,maxLIM);
+				PIDInit(&PID_Posi[1],PID_pos_p/10.0,PID_pos_i/10.0,PID_pos_d/100.0,maxLIM);
 				
 				PIDInit(&PID_Speed[0],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
 				PIDInit(&PID_Speed[1],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
@@ -134,18 +135,32 @@ void KBI0_IRQHandler(){
 				CLR_OLED_MODE();
 				CLR_DRIVING_MODE();
 				SET_BALANCE_MODE();
+
+				currentDuty[0] = 0;
+				currentDuty[1] = 0;
+
 				
 			}//keyboard5 pressed for the second time, go into DRIVING mode
 			if(!IS_DRIVING_MODE && (flag&kbi_Press5) && (record&kbi_Press5)){
 				record^=kbi_Press5; kbi0_Low(kbi_Press5);
 				
-				globalResetMid();
-//				SET_CLEAR_OLED();
-//				CLR_OLED_MODE();
-//				CLR_BALANCE_MODE();
-//				SET_DRIVING_MODE();
+//				globalResetMid();
+				SET_CLEAR_OLED();
+				CLR_OLED_MODE();
+				CLR_BALANCE_MODE();
+				SET_DRIVING_MODE();
+
+				currentDuty[0] = 0;
+				currentDuty[1] = 0;
+
 //				setGoalRPM[0] = 0.0;
 //				setGoalRPM[1] = 0.0;
+			}//Return to oled mode when pressing keyboard2 in balance mode
+			if(IS_BALANCE_MODE && (flag&kbi_Press2) && (record&kbi_Press2)){
+				record^=kbi_Press2; kbi0_Low(kbi_Press2);
+				SET_OLED_MODE();
+				CLR_DRIVING_MODE();
+				CLR_BALANCE_MODE();
 			}
 //-------------------------------------------------------------------------
 		/* Now press on, Detect high level(off)*/

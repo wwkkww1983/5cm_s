@@ -24,6 +24,7 @@
 #include "PID.h"
 #include "includes.h"
 #include "math.h"
+#include "distance.h"
 
 /*flags of some peripherals to detect whether they are to be operated*/
 #define ADC_READ_FLAG			(peripheralRun&(0x01))		// No use
@@ -93,6 +94,7 @@ extern int_16 	acceValue[3];
 extern int_16 	gyroValue[5], xAxis[5], zAxis[5], angVelocity, xAxisMean, zAxisMean, gyroMean;
 extern int_16 	acceAngle, gyroAngle;
 extern float	KalmanAngle;
+extern float	currentDuty[2];
 
 // For encoder (velocity feedback)
 extern int_16 	countLoop[2];		// 
@@ -114,6 +116,8 @@ extern int_16 PID_pos_d;		// /
 extern int_16 	maxLIM;				// 
 extern int_16	speedIndex;
 
+//ADC GetX
+extern int_16 x;
 
 extern int_16 globalCount;
 

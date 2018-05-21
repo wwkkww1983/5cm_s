@@ -32,3 +32,4 @@
 .\objects\balance.o: ..\DRIVER\incap.h
 .\objects\balance.o: ..\LIB\PID.h
 .\objects\balance.o: ..\LIB\includes.h
+.\objects\balance.o: ..\LIB\distance.h

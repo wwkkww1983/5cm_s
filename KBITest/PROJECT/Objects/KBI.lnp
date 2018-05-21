@@ -18,6 +18,7 @@
 ".\objects\balancecontrol.o"
 ".\objects\encoder.o"
 ".\objects\motor.o"
+".\objects\distance.o"
 ".\objects\balance.o"
 ".\objects\balance_isr.o"
 --strict --scatter ".\Objects\KBI.sct"

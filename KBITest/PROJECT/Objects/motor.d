@@ -34,3 +34,4 @@
 .\objects\motor.o: ..\DRIVER\incap.h
 .\objects\motor.o: ..\LIB\PID.h
 .\objects\motor.o: ..\LIB\includes.h
+.\objects\motor.o: ..\LIB\distance.h
