@@ -60,9 +60,9 @@
 #define POSITION_TIME			2u 			//compute position every 		1ms		1000Hz
 #define ENCODER_TIME			8u			//read encoder every 			4ms		250Hz
 //#define SPEED_CONTRO_LTIME		8u			//run speed control every 		4ms		250Hz
-#define SPEED_CONTRO_LTIME		10u			//run speed control every 		20ms		200Hz
+#define SPEED_CONTRO_LTIME		40u			//run speed control every 		20ms		200Hz
 #define DIR_CONTROL_TIME		10u			//run direction control every 	5ms		200Hz
-#define BALANCE_CONTROL_TIME	40u			//run balance control every 	5ms		200Hz
+#define BALANCE_CONTROL_TIME	10u			//run balance control every 	5ms		200Hz
 #define OLED_CHANGE_TIME		1000u		//update oled display every 	500ms	2Hz
 //#define ELAPSE_TIME				1000u		//elapse time 20ms
 
@@ -115,6 +115,9 @@ extern int_16 PID_pos_d;		// /
 
 extern int_16 	maxLIM;				// 
 extern int_16	speedIndex;
+
+extern uint16_t encoder_Count0;
+extern uint16_t encoder_Count1;
 
 //ADC GetX
 extern int_16 x;

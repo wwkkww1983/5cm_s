@@ -35,6 +35,10 @@ ATTENTION:
 */
 //===========================================================================
 #include "project.h"
+
+// (encoder_Count0/512)/(0.004s)*60*();
+#define SPEED_INDEX		8.1380f
+
 // Global variable for WHOLE porject
 uint_8 peripheralRun = 0;
 uint_8 runningMode = 0;
@@ -49,7 +53,7 @@ int_16 acceAngle, gyroAngle;
 float KalmanAngle;
 float TargetAngle;
 int_16 sSpeed[2] 		= {0,0};			
-float	 currentDuty[2] = {0.f,0.f}, speedTarget = 120;
+float	 currentDuty[2] = {0.f,0.f}, speedTarget = 500;
 float  speedDuty 	= 0;
 float  speedDutyPrev = 0;
 float  balanceDuty 	= 0;
@@ -73,7 +77,7 @@ int_16 PID_pos_p 	= 11;		// /10
 int_16 PID_pos_i	= 0;		// /10
 int_16 PID_pos_d	= 480;		// /100
 
-int_16 PID_spd_p 	= 15;		// /10
+int_16 PID_spd_p 	= 5;		// /1000
 int_16 PID_spd_i	= 0;		// /10
 int_16 PID_spd_d	= 0;		// /10
 
@@ -90,8 +94,6 @@ void globalKalmanLoop(void);
 float PIDLimit(float value, float limit);
 
 int main(){
-	
-	
 	// Accelerometer initialize
 	acceInit(MMA_12bit_Mode, MMA_Sensi_2g);
 	// Gyroscope initialize
@@ -180,7 +182,8 @@ int main(){
 				//OLED_ShowString(0,5,"kalAn");
 				dis_num(0,5,KalmanAngle);
 				OLED_ShowString(0,6,"curDu");
-				dis_num(0,6,(int)currentDuty);
+				dis_num(0,6,currentDuty[1]);
+				dis_num(0,7,meanSpeed);
 			}
 		}
 		if(ADC_READ_FLAG){
@@ -196,8 +199,19 @@ int main(){
 			// Refresh GYRO and ACCE
 			globalKalmanLoop();
 		}
-		if((IS_BALANCE_MODE) && (SPEED_CONTROL)){
-			CLR_SPEED_CONTROL();
+		if(ENCODER_FLAG){
+			CLR_ENCODER_FLAG();
+			speedRPM[0]=encoder_Count0*SPEED_INDEX;
+			speedRPM[1]=encoder_Count1*SPEED_INDEX;
+			// Read value
+			frequency[0] = speedRPM[0];
+			frequency[1] = speedRPM[1];
+			// Reset value for next read
+			encoder_Count0 = 0;
+			encoder_Count1 = 0;
+		}
+		if((IS_BALANCE_MODE) && (BALANCE_CONTROL)){
+			CLR_BALANCE_CONTROL();
 			// PID controls
 //			delta = GyroMid-KalmanAngle;
 //			setGoalRPM[0] = setGoalRPM[1] = fabs(delta*deltaExp*1.0);
@@ -231,45 +245,44 @@ int main(){
 				setReveDuty(MOTOR_2,-currentDuty[1]);
 			}
 		}
-			if(IS_DRIVING_MODE){
-				//if(SPEED_CONTROL){
-				//		CLR_SPEED_CONTROL();
-				//		meanSpeed = (speedRPM[0] + speedRPM[1])/2;
-				//		speedDutyPrev = speedDuty;
-				//		speedDuty = -PIDcalc(&PID_Speed[0],speedTarget,meanSpeed);
-				//		//speedDuty = -10;
-	 			//}
-				//if(DIRECTION_CONTROL){
-				//		CLR_DIRECTION_CONTROL();
-				//		dirDutyDif = PIDcalc(&PID_Dir, targetX, currentX);
-				//}
-				if(BALANCE_CONTROL){
-						CLR_BALANCE_CONTROL();
-						balanceDuty = PIDcalc(&PID_Posi[0],TargetAngle,KalmanAngle);
+		if(IS_DRIVING_MODE){
+			if(SPEED_CONTROL){
+				CLR_SPEED_CONTROL();
+				meanSpeed = (speedRPM[0] + speedRPM[1])/2;
+				speedDutyPrev = speedDuty;
+				speedDuty = -PIDcalc(&PID_Speed[0],speedTarget,meanSpeed);
+				//speedDuty = -10;
+			}
+			//if(DIRECTION_CONTROL){
+			//		CLR_DIRECTION_CONTROL();
+			//		dirDutyDif = PIDcalc(&PID_Dir, targetX, currentX);
+			//}
+			if(BALANCE_CONTROL){
+				CLR_BALANCE_CONTROL();
+				balanceDuty = PIDcalc(&PID_Posi[0],TargetAngle,KalmanAngle);
+				
+				// overall motor currentDutycontrol, with control time same as BALANCE_CONTROL
+				currentDuty[0] = currentDuty[0]+speedDuty+balanceDuty+dirDutyDif;
+				currentDuty[1] = currentDuty[1]+speedDuty+balanceDuty-dirDutyDif;
 
+				//limit the duty set to moto
+				currentDuty[0] = (currentDuty[0]>50.)?50.0:((currentDuty[0]<-50.)?-50.0:currentDuty[0]);
+				currentDuty[1] = (currentDuty[1]>50.)?50.0:((currentDuty[1]<-50.)?-50.0:currentDuty[1]);
 
-						// overall motor currentDutycontrol, with control time same as BALANCE_CONTROL
-						currentDuty[0] = currentDuty[0]-speedDutyPrev+speedDuty+balanceDuty+dirDutyDif;
-						currentDuty[1] = currentDuty[1]-speedDutyPrev+speedDuty+balanceDuty-dirDutyDif;
-
-						//limit the duty set to moto
-						currentDuty[0] = (currentDuty[0]>30.)?30.0:((currentDuty[0]<-30.)?-30.0:currentDuty[0]);
-						currentDuty[1] = (currentDuty[1]>30.)?30.0:((currentDuty[1]<-30.)?-30.0:currentDuty[1]);
-
-						if(currentDuty[0]>0) {
-							setForwDuty(MOTOR_1,currentDuty[0]);
-						}else{
-							setReveDuty(MOTOR_1,-currentDuty[0]);
-						}
-					
-						if(currentDuty[1]>0) {
-							setForwDuty(MOTOR_2,currentDuty[1]);
-						}else{
-							setReveDuty(MOTOR_2,-currentDuty[1]);
-						}
+				if(currentDuty[0]>0) {
+					setForwDuty(MOTOR_1,currentDuty[0]);
+				}else{
+					setReveDuty(MOTOR_1,-currentDuty[0]);
 				}
-			}	
-		}
+			
+				if(currentDuty[1]>0) {
+					setForwDuty(MOTOR_2,currentDuty[1]);
+				}else{
+					setReveDuty(MOTOR_2,-currentDuty[1]);
+				}
+			}
+		}	
+	}
 }
 
 float PIDLimit(float value, float limit)

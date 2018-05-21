@@ -21,56 +21,21 @@
 int_16 frequency[2] = {0,0};
 int_16 countLoop[2] = {0,0};
 float speedRPM[2] 	= {0,0};
-#define SPEED_INDEX		14648.4f
-#define LOOP_PULSE		1536
 int avg = 0;
 
+uint16_t encoder_Count0 = 0;
+uint16_t encoder_Count1 = 0;
+
 void FTM0_IRQHandler(){
-	static uint_16 results[10]={0};
-	static uint_8 index = 0;
-	static uint_16 count = 0;
 	if(isEncoderFlagSet(ENCODER_1)){
-		count++;
-		if(count==LOOP_PULSE){
-			count=0;countLoop[0]++;
-		}
-		results[index] = EncoderRead(ENCODER_1);
-		index++;
-		if(index == 10){
-			index = 0;
-			FTM0_CNT = 0;		//Clear the counter
-			for(uint_8 i=0;i<5;i++){
-				avg+=results[i+5]-results[i];
-			}
-			avg=avg/25;
-			speedRPM[0] = SPEED_INDEX/avg; // Speed in rpm
-			frequency[0]=(int16_t)speedRPM[0];
-		}
+		encoder_Count0++;
 		EncoderClrFlag(ENCODER_1);
 	}
+	
 }
 void FTM1_IRQHandler(){
-	static uint_16 results[10]={0};
-	static uint_8 index = 0;
-	static uint_16 count = 0;
 	if(isEncoderFlagSet(ENCODER_2)){
-		count++;
-		if(count==LOOP_PULSE){
-			count=0;countLoop[1]++;
-		}
-		
-		results[index] = EncoderRead(ENCODER_2);
-		index++;
-		if(index == 10){
-			index = 0;
-			FTM1_CNT = 0;		//Clear the counter
-			for(uint_8 i=0;i<5;i++){
-				avg+=results[i+5]-results[i];
-			}
-			avg=avg/25;
-			speedRPM[1] = SPEED_INDEX/avg; // Speed in rpm
-			frequency[1]=(int16_t)speedRPM[1];
-		}
+		encoder_Count1++;
 		EncoderClrFlag(ENCODER_2);
 	}
 }
@@ -126,8 +91,8 @@ void KBI0_IRQHandler(){
 				PIDInit(&PID_Posi[0],PID_pos_p/10.0,PID_pos_i/10.0,PID_pos_d/100.0,maxLIM);
 				PIDInit(&PID_Posi[1],PID_pos_p/10.0,PID_pos_i/10.0,PID_pos_d/100.0,maxLIM);
 				
-				PIDInit(&PID_Speed[0],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
-				PIDInit(&PID_Speed[1],PID_spd_p/10.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
+				PIDInit(&PID_Speed[0],PID_spd_p/1000.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
+				PIDInit(&PID_Speed[1],PID_spd_p/1000.0,PID_spd_i/10.0,PID_spd_d/10.0,maxLIM);
 				
 				globalResetMid();
 				
